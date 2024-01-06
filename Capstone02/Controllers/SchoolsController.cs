@@ -12,9 +12,9 @@ namespace Capstone02.Controllers
 {
     public class SchoolsController : Controller
     {
-        private readonly PTAFeeDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public SchoolsController(PTAFeeDBContext context)
+        public SchoolsController(ApplicationDbContext context)
         {
             _context = context;
         }

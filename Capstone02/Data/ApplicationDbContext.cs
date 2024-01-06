@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Capstone02.Data
 {
-    public class PTAFeeDBContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public PTAFeeDBContext(DbContextOptions<PTAFeeDBContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }

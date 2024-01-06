@@ -12,9 +12,9 @@ namespace Capstone02.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly PTAFeeDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public EmployeesController(PTAFeeDBContext context)
+        public EmployeesController(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -12,9 +12,9 @@ namespace Capstone02.Controllers
 {
     public class PeopleController : Controller
     {
-        private readonly PTAFeeDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public PeopleController(PTAFeeDBContext context)
+        public PeopleController(ApplicationDbContext context)
         {
             _context = context;
         }
