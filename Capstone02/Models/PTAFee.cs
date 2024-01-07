@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public string Type { get; set; }
-        public decimal Amount { get; set; }
-        public DateOnly Date { get; set; }
-        public string SchoolYear { get; set; }
-        public string ReferenceNumber { get; set; }
+        public int Amount { get; set; }
+        public DateTime Date { get; set; }
+        public required string SchoolYear { get; set; }
+        public required string ReferenceNumber { get; set; }
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
