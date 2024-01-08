@@ -22,20 +22,20 @@ namespace Capstone02.Controllers
         // GET: Parents
         public async Task<IActionResult> Index()
         {
-            var pTAFeeDBContext = _context.Parents.Include(p => p.Person);
-            return View(await pTAFeeDBContext.ToListAsync());
+            var applicationDbContext = _context.Parents.Include(p => p.Student);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Parents/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Parents == null)
             {
                 return NotFound();
             }
 
             var parent = await _context.Parents
-                .Include(p => p.Person)
+                .Include(p => p.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (parent == null)
             {
@@ -48,7 +48,7 @@ namespace Capstone02.Controllers
         // GET: Parents/Create
         public IActionResult Create()
         {
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName");
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "FirstName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ChildName,PersonId")] Parent parent)
+        public async Task<IActionResult> Create([Bind("Id,ParentName,ContactNumber,StudentId")] Parent parent)
         {
             //if (ModelState.IsValid)
             //{
@@ -65,14 +65,14 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", parent.PersonId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "FirstName", parent.StudentId);
             return View(parent);
         }
 
         // GET: Parents/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Parents == null)
             {
                 return NotFound();
             }
@@ -82,7 +82,7 @@ namespace Capstone02.Controllers
             {
                 return NotFound();
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", parent.PersonId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "FirstName", parent.StudentId);
             return View(parent);
         }
 
@@ -91,7 +91,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ChildName,PersonId")] Parent parent)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ParentName,ContactNumber,StudentId")] Parent parent)
         {
             if (id != parent.Id)
             {
@@ -118,20 +118,20 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", parent.PersonId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "FirstName", parent.StudentId);
             return View(parent);
         }
 
         // GET: Parents/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Parents == null)
             {
                 return NotFound();
             }
 
             var parent = await _context.Parents
-                .Include(p => p.Person)
+                .Include(p => p.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (parent == null)
             {
@@ -146,19 +146,23 @@ namespace Capstone02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Parents == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Parents'  is null.");
+            }
             var parent = await _context.Parents.FindAsync(id);
             if (parent != null)
             {
                 _context.Parents.Remove(parent);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ParentExists(int id)
         {
-            return _context.Parents.Any(e => e.Id == id);
+          return (_context.Parents?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

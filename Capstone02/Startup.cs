@@ -35,6 +35,8 @@ namespace Capstone02
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
+
+            
             services.AddRazorPages();
 
             services.AddCors(c =>

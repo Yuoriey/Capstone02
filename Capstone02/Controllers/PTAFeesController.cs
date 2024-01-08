@@ -22,21 +22,20 @@ namespace Capstone02.Controllers
         // GET: PTAFees
         public async Task<IActionResult> Index()
         {
-            var pTAFeeDBContext = _context.PTAFees.Include(p => p.Employee).Include(p => p.Student);
-            return View(await pTAFeeDBContext.ToListAsync());
+              return _context.PTAFees != null ? 
+                          View(await _context.PTAFees.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.PTAFees'  is null.");
         }
 
         // GET: PTAFees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.PTAFees == null)
             {
                 return NotFound();
             }
 
             var pTAFee = await _context.PTAFees
-                .Include(p => p.Employee)
-                .Include(p => p.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pTAFee == null)
             {
@@ -49,8 +48,6 @@ namespace Capstone02.Controllers
         // GET: PTAFees/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Type");
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Year");
             return View();
         }
 
@@ -59,7 +56,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Amount,Date,SchoolYear,ReferenceNumber,EmployeeId,StudentId")] PTAFee pTAFee)
+        public async Task<IActionResult> Create([Bind("Id,Type,Amount")] PTAFee pTAFee)
         {
             //if (ModelState.IsValid)
             //{
@@ -67,15 +64,13 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Type", pTAFee.EmployeeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Year", pTAFee.StudentId);
             return View(pTAFee);
         }
 
         // GET: PTAFees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.PTAFees == null)
             {
                 return NotFound();
             }
@@ -85,8 +80,6 @@ namespace Capstone02.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Type", pTAFee.EmployeeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Year", pTAFee.StudentId);
             return View(pTAFee);
         }
 
@@ -95,7 +88,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Amount,Date,SchoolYear,ReferenceNumber,EmployeeId,StudentId")] PTAFee pTAFee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Amount")] PTAFee pTAFee)
         {
             if (id != pTAFee.Id)
             {
@@ -122,22 +115,18 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Type", pTAFee.EmployeeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Year", pTAFee.StudentId);
             return View(pTAFee);
         }
 
         // GET: PTAFees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.PTAFees == null)
             {
                 return NotFound();
             }
 
             var pTAFee = await _context.PTAFees
-                .Include(p => p.Employee)
-                .Include(p => p.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pTAFee == null)
             {
@@ -152,19 +141,23 @@ namespace Capstone02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.PTAFees == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.PTAFees'  is null.");
+            }
             var pTAFee = await _context.PTAFees.FindAsync(id);
             if (pTAFee != null)
             {
                 _context.PTAFees.Remove(pTAFee);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PTAFeeExists(int id)
         {
-            return _context.PTAFees.Any(e => e.Id == id);
+          return (_context.PTAFees?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

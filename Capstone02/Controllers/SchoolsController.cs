@@ -22,13 +22,15 @@ namespace Capstone02.Controllers
         // GET: Schools
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Schools.ToListAsync());
+              return _context.Schools != null ? 
+                          View(await _context.Schools.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Schools'  is null.");
         }
 
         // GET: Schools/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Schools == null)
             {
                 return NotFound();
             }
@@ -68,7 +70,7 @@ namespace Capstone02.Controllers
         // GET: Schools/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Schools == null)
             {
                 return NotFound();
             }
@@ -119,7 +121,7 @@ namespace Capstone02.Controllers
         // GET: Schools/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Schools == null)
             {
                 return NotFound();
             }
@@ -139,19 +141,23 @@ namespace Capstone02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Schools == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Schools'  is null.");
+            }
             var school = await _context.Schools.FindAsync(id);
             if (school != null)
             {
                 _context.Schools.Remove(school);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SchoolExists(int id)
         {
-            return _context.Schools.Any(e => e.Id == id);
+          return (_context.Schools?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

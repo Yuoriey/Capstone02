@@ -3,13 +3,17 @@
     public class Student
     {
         public int Id { get; set; }
-        public string Section { get; set; }
-        public string Year { get; set; }
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
+        public int Age { get; set; }
+        public required string Gender { get; set; }
+        public required string Address { get; set; }
+        public required string EmailAddress { get; set; }
+        public required string ContactNumber { get; set; }
+        public required string Section { get; set; }
+        public required string Year { get; set; }
 
 
-        public int PersonId { get; set; }
-        public Person Person { get; set; }
-
-        public ICollection<PTAFee> PTAFees { get; set; }
+        public ICollection<Parent> Parents { get; set; }
     }
 }

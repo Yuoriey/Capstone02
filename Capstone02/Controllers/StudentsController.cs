@@ -22,20 +22,20 @@ namespace Capstone02.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            var pTAFeeDBContext = _context.Students.Include(s => s.Person);
-            return View(await pTAFeeDBContext.ToListAsync());
+              return _context.Students != null ? 
+                          View(await _context.Students.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Students'  is null.");
         }
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Students == null)
             {
                 return NotFound();
             }
 
             var student = await _context.Students
-                .Include(s => s.Person)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -48,7 +48,6 @@ namespace Capstone02.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Section,Year,PersonId")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Age,Gender,Address,EmailAddress,ContactNumber,Section,Year")] Student student)
         {
             //if (ModelState.IsValid)
             //{
@@ -65,14 +64,13 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", student.PersonId);
             return View(student);
         }
 
         // GET: Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Students == null)
             {
                 return NotFound();
             }
@@ -82,7 +80,6 @@ namespace Capstone02.Controllers
             {
                 return NotFound();
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", student.PersonId);
             return View(student);
         }
 
@@ -91,7 +88,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Section,Year,PersonId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Age,Gender,Address,EmailAddress,ContactNumber,Section,Year")] Student student)
         {
             if (id != student.Id)
             {
@@ -118,20 +115,18 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", student.PersonId);
             return View(student);
         }
 
         // GET: Students/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Students == null)
             {
                 return NotFound();
             }
 
             var student = await _context.Students
-                .Include(s => s.Person)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -146,19 +141,23 @@ namespace Capstone02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Students == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Students'  is null.");
+            }
             var student = await _context.Students.FindAsync(id);
             if (student != null)
             {
                 _context.Students.Remove(student);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.Id == id);
+          return (_context.Students?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

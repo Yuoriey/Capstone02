@@ -22,20 +22,19 @@ namespace Capstone02.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var pTAFeeDBContext = _context.Employees.Include(e => e.Person).Include(e => e.School);
-            return View(await pTAFeeDBContext.ToListAsync());
+            var applicationDbContext = _context.Employees.Include(e => e.School);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Employees == null)
             {
                 return NotFound();
             }
 
             var employee = await _context.Employees
-                .Include(e => e.Person)
                 .Include(e => e.School)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
@@ -49,7 +48,6 @@ namespace Capstone02.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName");
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name");
             return View();
         }
@@ -59,7 +57,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Position,PersonId,SchoolId")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Type,Position,Age,Gender,Address,EmailAddress,ContactNumber,SchoolId")] Employee employee)
         {
             //if (ModelState.IsValid)
             //{
@@ -67,7 +65,6 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FIrstName", employee.PersonId);
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
             return View(employee);
         }
@@ -75,7 +72,7 @@ namespace Capstone02.Controllers
         // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Employees == null)
             {
                 return NotFound();
             }
@@ -85,7 +82,6 @@ namespace Capstone02.Controllers
             {
                 return NotFound();
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", employee.PersonId);
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
             return View(employee);
         }
@@ -95,7 +91,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Position,PersonId,SchoolId")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Type,Position,Age,Gender,Address,EmailAddress,ContactNumber,SchoolId")] Employee employee)
         {
             if (id != employee.Id)
             {
@@ -122,7 +118,6 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "FirstName", employee.PersonId);
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
             return View(employee);
         }
@@ -130,13 +125,12 @@ namespace Capstone02.Controllers
         // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Employees == null)
             {
                 return NotFound();
             }
 
             var employee = await _context.Employees
-                .Include(e => e.Person)
                 .Include(e => e.School)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
@@ -152,19 +146,23 @@ namespace Capstone02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (_context.Employees == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Employees'  is null.");
+            }
             var employee = await _context.Employees.FindAsync(id);
             if (employee != null)
             {
                 _context.Employees.Remove(employee);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmployeeExists(int id)
         {
-            return _context.Employees.Any(e => e.Id == id);
+          return (_context.Employees?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

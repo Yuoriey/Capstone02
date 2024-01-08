@@ -12,7 +12,7 @@ namespace Capstone02.Data
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Parent> Parents { get; set; }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<PTAFee> PTAFees { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<School> Schools { get; set; }
@@ -24,25 +24,48 @@ namespace Capstone02.Data
 
             //Employee
 
-            builder.Entity<Employee>().HasOne(e => e.Person).WithMany(p => p.Employees).HasForeignKey(e => e.PersonId);
-            builder.Entity<Employee>().HasOne(e => e.School).WithMany(p => p.Employees).HasForeignKey(e => e.SchoolId);
+            
+            builder.Entity<Employee>()
+                .HasOne(e => e.School)
+                .WithMany(p => p.Employees)
+                .HasForeignKey(e => e.SchoolId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             //Parent
 
-            builder.Entity<Parent>().HasOne(e => e.Person).WithMany(p => p.Parents).HasForeignKey(e => e.PersonId);
+            builder.Entity<Parent>()
+                .HasOne(e => e.Student)
+                .WithMany(p => p.Parents)
+                .HasForeignKey(e => e.StudentId)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            //PTAFee
+            //Transaction
 
-            builder.Entity<PTAFee>().HasOne(e => e.Employee).WithMany(p => p.PTAFees).HasForeignKey(e => e.EmployeeId).OnDelete(DeleteBehavior.ClientSetNull);
-            builder.Entity<PTAFee>().HasOne(e => e.Student).WithMany(p => p.PTAFees).HasForeignKey(e => e.StudentId).OnDelete(DeleteBehavior.ClientSetNull);
+            builder.Entity<Transaction>()
+                .HasOne(e => e. Employee)
+                .WithMany(p => p.Transactions)
+                .HasForeignKey(e => e.EmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
-            //Student
+			builder.Entity<Transaction>()
+				.HasOne(e => e.Parent)
+				.WithMany(p => p.Transactions)
+				.HasForeignKey(e => e.ParentId)
+				.OnDelete(DeleteBehavior.ClientSetNull);
 
-            builder.Entity<Student>().HasOne(e => e.Person).WithMany(p => p.Students).HasForeignKey(e => e.PersonId);
+			builder.Entity<Transaction>()
+				.HasOne(e => e.PTAFee)
+				.WithMany(p => p.Transactions)
+				.HasForeignKey(e => e.PTAFeeId)
+				.OnDelete(DeleteBehavior.ClientSetNull);
+
+			//Student
 
 
 
-        }
+
+
+		}
     }
 
 }
