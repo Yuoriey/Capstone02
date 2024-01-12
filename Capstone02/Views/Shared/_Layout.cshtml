@@ -22,42 +22,42 @@
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                      @* @if (SignInManager.IsSignedIn(User))
+                       @if (SignInManager.IsSignedIn(User))
                     {
                         <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">Employee</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="People" asp-action="Index">People</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">School</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">Parent</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">PTAFee</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">Student</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">School</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">Fees</a>
                             </li>
                         </ul>
                     }
 
                     else 
                     {
-                        <ul class="navbar-nav flex-grow-1">
+                        @* <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        </ul> *@
+                        </ul>  *@
                     } 
-                     <ul class="navbar-nav flex-grow-1">
+                     @* <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -83,7 +83,7 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">School</a>
                         </li>
                     </ul> 
-                </div>
+                </div> *@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial.cshtml" />
                 </div>
@@ -96,11 +96,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Capstone02 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
