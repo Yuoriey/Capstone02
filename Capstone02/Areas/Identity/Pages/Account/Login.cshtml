@@ -1,13 +1,11 @@
 ﻿@page
 @model LoginModel
 
-@{
-    ViewData["Title"] = "Log in";
-}
+
 
 <h1>@ViewData["Title"]</h1>
 <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="col-4">
         <section>
             <form id="account" method="post">
                 <h2>PTA Fee Login.</h2>
@@ -35,10 +33,9 @@
                 <div>
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
+                    
                     <p>
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
