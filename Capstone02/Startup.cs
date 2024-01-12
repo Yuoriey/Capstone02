@@ -97,9 +97,24 @@ namespace Capstone02
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapGet("/", async context =>
+                {
+                    if (context.User.Identity.IsAuthenticated)
+                    {
+                        context.Response.Redirect("/Home/Index");
+                    }
+                    else
+                    {
+                        context.Response.Redirect("Identity/Account/Login");
+                    }
+                   
+                });
+               
                 endpoints.MapControllerRoute(
                     name: "default",
                      pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
                 endpoints.MapRazorPages();
             });

@@ -63,10 +63,10 @@ namespace Capstone02.Controllers
             //{
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             //}
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
-            return View(employee);
+            return Redirect(nameof(Index));
         }
 
         // GET: Employees/Edit/5
@@ -116,10 +116,10 @@ namespace Capstone02.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
-            return View(employee);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Employees/Delete/5

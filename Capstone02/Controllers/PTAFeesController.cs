@@ -64,7 +64,7 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            return View(pTAFee);
+            //return View(pTAFee);
         }
 
         // GET: PTAFees/Edit/5
@@ -115,7 +115,7 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(pTAFee);
+            //return View(pTAFee);
         }
 
         // GET: PTAFees/Delete/5

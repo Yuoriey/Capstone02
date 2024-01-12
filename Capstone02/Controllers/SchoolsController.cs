@@ -64,7 +64,7 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}
-            return View(school);
+            //return View(school);
         }
 
         // GET: Schools/Edit/5
@@ -115,7 +115,7 @@ namespace Capstone02.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(school);
+            //return View(school);
         }
 
         // GET: Schools/Delete/5

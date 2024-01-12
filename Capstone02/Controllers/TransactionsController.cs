@@ -67,12 +67,12 @@ namespace Capstone02.Controllers
             //{
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             //}
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FirstName", transaction.EmployeeId);
             ViewData["PTAFeeId"] = new SelectList(_context.PTAFees, "Id", "Type", transaction.PTAFeeId);
             ViewData["ParentId"] = new SelectList(_context.Parents, "Id", "ParentName", transaction.ParentId);
-            return View(transaction);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Transactions/Edit/5
@@ -124,12 +124,12 @@ namespace Capstone02.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FirstName", transaction.EmployeeId);
             ViewData["PTAFeeId"] = new SelectList(_context.PTAFees, "Id", "Type", transaction.PTAFeeId);
             ViewData["ParentId"] = new SelectList(_context.Parents, "Id", "ParentName", transaction.ParentId);
-            return View(transaction);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Transactions/Delete/5
