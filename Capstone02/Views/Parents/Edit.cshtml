@@ -14,17 +14,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="ParentName" class="control-label"></label>
+                Parent's Name
+				@*<label asp-for="ParentName" class="control-label"></label>*@
                 <input asp-for="ParentName" class="form-control" />
                 <span asp-validation-for="ParentName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContactNumber" class="control-label"></label>
+                Contact Number
+				@*<label asp-for="ContactNumber" class="control-label"></label>*@
                 <input asp-for="ContactNumber" class="form-control" />
                 <span asp-validation-for="ContactNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StudentId" class="control-label">Student Name</label>
+                Child
+				@*<label asp-for="StudentId" class="control-label">Student Name</label>*@
                 <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>

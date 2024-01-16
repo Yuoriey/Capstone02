@@ -8,25 +8,44 @@
 
 <h4>School</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="col-lg-8">
+    <div class="card">
+        <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+            
+            <div class="row mb-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-3">
+                <h6 class="mb-0">School</h6>
+                @*<label asp-for="Name" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">School Address</h6>
+                @*<label asp-for="Address" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+
+            <div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-9 text-secondary">
+				<a asp-action="Index" class="btn btn-primary px-10">Back to List</a>
+                <input type="submit" value="Submit" class="btn btn-primary px-10" />
+				</div>
             </div>
-        </form>
+
+			</form>
+		</div>
     </div>
 </div>
 

@@ -8,60 +8,121 @@
 
 <h4>Student</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="col-lg-8">
+    <div class="card">
+        <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+
+            <div class="row mb-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-sm-3">
+                <h6 class="mb-0">First Name</h6>
+                @*<label asp-for="FirstName" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Last Name</h6>
+                @*<label asp-for="LastName" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Age</h6>
+                @*<label asp-for="Age" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Gender</h6>
+                @*<label asp-for="Gender" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Home Address</h6>
+                @*<label asp-for="Address" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">E-mail Address</h6>
+                @*<label asp-for="EmailAddress" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="EmailAddress" class="form-control" />
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ContactNumber" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Contact Number</h6>
+                @*<label asp-for="ContactNumber" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="ContactNumber" class="form-control" />
                 <span asp-validation-for="ContactNumber" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Section" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Section</h6>
+                @*<label asp-for="Section" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Section" class="form-control" />
                 <span asp-validation-for="Section" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
+
+            <div class="row mb-3">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Year Level</h6>
+                @*<label asp-for="Year" class="control-label"></label>*@
+            </div>
+                <div class="col-sm-9 text-secondary">
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
+			    </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+
+            <div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-9 text-secondary">
+				<a asp-action="Index" class="btn btn-primary px-10">Back to List</a>
+                <input type="submit" value="Submit" class="btn btn-primary px-10" />
+				</div>
             </div>
-        </form>
+
+			</form>
+		</div>
     </div>
 </div>
 
