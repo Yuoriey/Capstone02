@@ -17,6 +17,41 @@ html {
   min-height: 100%;
 }
 
+
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    margin: 0;
 }
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    transition: width 0.3s;
+}
+
+.content {
+    flex: 1;
+    padding: 15px;
+}
+
+
+.hidden {
+    display: none; /* Hide the sidebar when the 'hidden' class is applied */
+}
+
+#sidebarToggle {
+    background-color: #343a40; /* Background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 15px; /* Adjust padding as needed */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 16px; /* Adjust font size */
+}
+
+#sidebarToggle:hover {
+        background-color: #555; /* Darken the background color on hover */
+    }

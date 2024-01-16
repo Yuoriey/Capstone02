@@ -105,7 +105,7 @@ namespace Capstone02
                         context.Response.Redirect("/Home/Index");
                     }
                     else
-                    {
+                    { 
                         context.Response.Redirect("Identity/Account/Login");
                     }
                    
