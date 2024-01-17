@@ -4,7 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Parent</h1>
+<header style="text-align: center; padding: 20px;">
+    <h5>Iligan City East National High School - Santa Filomena</h5>
+    <h6>Butuan - Cagayan de Oro - Iligan Rd, Iligan City, Lanao del Norte</h6>
+    <h6>Since 1985</h6>
+</header>
+
+<h2 style="text-align: center">P A R E N T S</h2>
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
@@ -35,8 +41,8 @@
             </td>
 
             <td>
-                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
                     <a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

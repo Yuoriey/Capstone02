@@ -4,137 +4,97 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Employee</h4>
+<h4 style="text-align: center">Enter Employee's Information</h4>
 <hr />
-<div class="col-lg-8">
-    <div class="card">
-        <div class="card-body">
-            <form asp-action="Create">
-            <div class="row mb-3">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-sm-3">
-                <h6 class="mb-0">First Name</h6>
-                @*<label asp-for="FirstName" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-			    </div>
-            </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Last Name</h6>
-                @*<label asp-for="LastName" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-			    </div>
-            </div>
+<div class="container mt-6">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Create">
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Type</h6>
-                @*<label asp-for="Type" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-			    </div>
-            </div>
+                        <div class="row mb-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">First Name</h6>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">Last Name</h6>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Position</h6>
-                @*<label asp-for="Position" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
-			    </div>
-            </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 mb-3">
+                                <h6 class="form-label">Age</h6>
+                                <input asp-for="Age" type="text" class="form-control" />
+                                <span asp-validation-for="Age" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h6 class="form-label">Gender</h6>
+                                <input asp-for="Gender" class="form-control" />
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h6 class="form-label">Contact Number</h6>
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Age</h6>
-                @*<label asp-for="Age" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-			    </div>
-            </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">Home Address</h6>
+                                <input asp-for="Address" class="form-control" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">E-mail Address</h6>
+                                <input asp-for="EmailAddress" class="form-control" />
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Gender</h6>
-                @*<label asp-for="Gender" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-			    </div>
-            </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">Office</h6>
+                                <input asp-for="Type" class="form-control" />
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="form-label">Position</h6>
+                                <input asp-for="Position" class="form-control" />
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                        </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Home Address</h6>
-                @*<label asp-for="Address" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-			    </div>
-            </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12 mb-3">
+                                <h6 class="form-label">School</h6>
+                                <select asp-for="SchoolId" class="form-control" asp-items="ViewBag.SchoolId"></select>
+                            </div>
+                        </div>
 
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">E-mail Address</h6>
-                @*<label asp-for="EmailAddress" class="control-label"></label>*@
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-end">
+                                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="EmailAddress" class="form-control" />
-                <span asp-validation-for="EmailAddress" class="text-danger"></span>
-			    </div>
-            </div>
-
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Contact Number</h6>
-                @*<label asp-for="ContactNumber" class="control-label"></label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <input asp-for="ContactNumber" class="form-control" />
-                <span asp-validation-for="ContactNumber" class="text-danger"></span>
-			    </div>
-            </div>
-
-            <div class="row mb-3">
-            <div class="col-sm-3">
-                <h6 class="mb-0">School</h6>
-                @*<label asp-for="SchoolId" class="control-label">School Name</label>*@
-            </div>
-                <div class="col-sm-9 text-secondary">
-                <select asp-for="SchoolId" class ="form-control" asp-items="ViewBag.SchoolId"></select>
-			    </div>
-            </div>
-
-            <div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-9 text-secondary">
-				<a asp-action="Index" class="btn btn-primary px-10">Back to List</a>
-                <input type="submit" value="Submit" class="btn btn-primary px-10" />
-				</div>
-            </div>
-
-			</form>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

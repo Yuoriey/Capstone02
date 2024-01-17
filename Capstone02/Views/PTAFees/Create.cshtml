@@ -4,49 +4,55 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>PTAFee</h4>
+<h4 style="text-align: center">Enter Payment Information</h4>
 <hr />
-<div class="col-lg-8">
-    <div class="card">
-		<div class="card-body">
-			<form asp-action="Create">
-			<div class="row mb-3">
-				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-sm-3">
-				<h6 class="mb-0">Type</h6>
-				@*<label asp-for="Type" class="control-label"></label>*@
-			</div>	
-                <div class="col-sm-9 text-secondary">
-				<input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-				</div>
-			</div>
+
+<div class="container mt-6">
+	<div class="row justify-content-center">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<form asp-action="Create">
+
+						<div class="row mb-3">
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							<div class="col-sm-3">
+								<h6 class="mb-0">Type</h6>
+								@*<label asp-for="Type" class="control-label"></label>*@
+							</div>	
+							 <div class="col-sm-9 text-secondary">
+							<input asp-for="Type" class="form-control" />
+							<span asp-validation-for="Type" class="text-danger"></span>
+							</div>
+						</div>
+
+
 			
-            <div class="row mb-3">
-			<div class="col-sm-3">
-					<h6 class="mb-0">Amount</h6>
-					@*<label asp-for="Amount" class="control-label"></label>*@
-			</div>
-				<div class="col-sm-9 text-secondary">
-                <input asp-for="Amount" class="form-control" />
-				<span asp-validation-for="Amount" class="text-danger"></span>
-				</div>
-            </div>
+						<div class="row mb-3">
+							<div class="col-sm-3">
+								<h6 class="mb-0">Amount</h6>
+								@*<label asp-for="Amount" class="control-label"></label>*@
+							</div>
+							<div class="col-sm-9 text-secondary">
+							<input asp-for="Amount" class="form-control" />
+							<span asp-validation-for="Amount" class="text-danger"></span>
+							</div>
+						</div>
 
-            <div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-9 text-secondary">
-				<a asp-action="Index" class="btn btn-primary px-10">Back to List</a>
-                <input type="submit" value="Submit" class="btn btn-primary px-10" />
+						<div class="row">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-9 text-end">
+								<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+								<input type="submit" value="Submit" class="btn btn-primary" />
+							</div>
+						</div>
+					</form>
 				</div>
-            </div>
-
-			</form>
 			</div>
 		</div>
-    </div>
+	</div>
+</div>
+
 @* <div class="col-lg-8">
 	<div class="card">
 		<div class="card-body">

@@ -10,72 +10,62 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Capstone02.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Capstone02/Images" asp-append-version="true" />
 
-    <!-- Add the following CSS styles -->
-    <style>
-        body {
-            display: flex;
-            flex-direction: row;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            transition: width 0.3s;
-        }
-
-        .content {
-            flex: 1;
-            padding: 15px;
-        }
-
-        .sidebar:hover {
-            width: 250px;
-        }
-    </style> 
 </head>
 
 <body>
-     @if (SignInManager.IsSignedIn(User)) 
+    @if (SignInManager.IsSignedIn(User)) 
     {
-        <!-- Sidebar -->
-        
-         <div class="sidebar">
-                <ul class="navbar-nav flex-column">
-                <li class="nav-item">
-                    <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">Employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">School</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">Parent</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">Student</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">Fees</a>
-                </li>
+    <button id="sidebarToggle" class="btn btn-dark">
+        <i class='bx'>
 
+        </i>
+    </button>
+
+    
+        <!-- Sidebar (initially hidden) -->
+        <div class="sidebar hidden">
+            <ul class="navbar-nav flex-column">
+                <li class="nav-item">
+                    <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class='bx bxs-user-detail'></i> @UserManager.GetUserName(User)!
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">
+                        <i class='bx bxs-receipt'></i> Transactions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">
+                        <i class='bx bxs-group'></i> Employee
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">
+                        <i class='bx bxs-school'></i> School
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">
+                        <i class='bx bx-male-female'></i> Parent
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">
+                        <i class='bx bxs-user-circle'></i> Student
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">
+                        <i class='bx bxs-credit-card'></i> Fees
+                    </a>
+                </li>
             </ul>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial.cshtml" />
-                </div>
-
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial.cshtml" />
+            </div>
         </div> 
     }
    
@@ -145,5 +135,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
