@@ -3,13 +3,13 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h4 style="text-align: center">Enter Student's Information</h4>
+<hr/>
+<h3 style="text-align: center">Enter Student's Information</h3>
 <hr />
 
 <div class="container mt-6">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <div class="card">
                 <div class="card-body">
                     <form asp-action="Create">
@@ -72,10 +72,9 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-9 text-end">
-                                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
                                 <input type="submit" value="Submit" class="btn btn-primary" />
                             </div>
                         </div>

@@ -3,111 +3,46 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h4 style="text-align: center">Enter Payment Information</h4>
+<hr />
+<h3 style="text-align: center">Enter Payment</h3>
 <hr />
 
 <div class="container mt-6">
-	<div class="row justify-content-center">
-		<div class="col-lg-8">
-			<div class="card">
-				<div class="card-body">
-					<form asp-action="Create">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
 
-						<div class="row mb-3">
-							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-							<div class="col-sm-3">
-								<h6 class="mb-0">Type</h6>
-								@*<label asp-for="Type" class="control-label"></label>*@
-							</div>	
-							 <div class="col-sm-9 text-secondary">
-							<input asp-for="Type" class="form-control" />
-							<span asp-validation-for="Type" class="text-danger"></span>
-							</div>
-						</div>
+                        <div class="form-group">
+                            <h6 class="form-label">Type</h6>
+                            <input asp-for="Type" class="form-control" />
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
 
+                        <div class="form-group">
+                            <h6 class="form-label">Amount</h6>
+                            <input asp-for="Amount" class="form-control" />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
 
-			
-						<div class="row mb-3">
-							<div class="col-sm-3">
-								<h6 class="mb-0">Amount</h6>
-								@*<label asp-for="Amount" class="control-label"></label>*@
-							</div>
-							<div class="col-sm-9 text-secondary">
-							<input asp-for="Amount" class="form-control" />
-							<span asp-validation-for="Amount" class="text-danger"></span>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-3"></div>
-							<div class="col-sm-9 text-end">
-								<a asp-action="Index" class="btn btn-secondary">Back to List</a>
-								<input type="submit" value="Submit" class="btn btn-primary" />
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-@* <div class="col-lg-8">
-	<div class="card">
-		<div class="card-body">
-			<div class="row mb-3">
-				<div class="col-sm-3">
-					<h6 class="mb-0">Full Name</h6>
-				</div>
-				<div class="col-sm-9 text-secondary">
-					<input type="text" class="form-control" value="John Doe">
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-sm-3">
-					<h6 class="mb-0">Email</h6>
-				</div>
-				<div class="col-sm-9 text-secondary">
-					<input type="text" class="form-control" value="john@example.com">
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-sm-3">
-					<h6 class="mb-0">Phone</h6>
-				</div>
-				<div class="col-sm-9 text-secondary">
-					<input type="text" class="form-control" value="(239) 816-9029">
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-sm-3">
-					<h6 class="mb-0">Mobile</h6>
-				</div>
-				<div class="col-sm-9 text-secondary">
-					<input type="text" class="form-control" value="(320) 380-4539">
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-sm-3">
-					<h6 class="mb-0">Address</h6>
-				</div>
-				<div class="col-sm-9 text-secondary">
-					<input type="text" class="form-control" value="Bay Area, San Francisco, CA">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-9 text-secondary">
-					<input type="button" class="btn btn-primary px-4" value="Save Changes">
-				</div>
-			</div>
-		</div>
-	</div>
-	</div> *@
-
-
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

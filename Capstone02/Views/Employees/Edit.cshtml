@@ -3,9 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h4 style="text-align: center">Edit Employee Information</h4>
 <hr />
+<h3 style="text-align: center">Edit Employee's Information</h3>
+<hr />
+
 <div class="container mt-6">
     <div class="row justify-content-center">
         <div class="col-lg-10">
@@ -15,12 +16,12 @@
                         <div class="row mb-3">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">First Name</label>
+                                <h6 class="form-label">First Name</h6>
                                 <input asp-for="FirstName" class="form-control" />
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Last Name</label>
+                                <h6 class="form-label">Last Name</h6>
                                 <input asp-for="LastName" class="form-control" />
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
@@ -28,17 +29,17 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Age</label>
+                                <h6 class="form-label">Age</h6>
                                 <input asp-for="Age" type="text" class="form-control" />
                                 <span asp-validation-for="Age" class="text-danger"></span>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Gender</label>
+                                <h6 class="form-label">Gender</h6>
                                 <input asp-for="Gender" class="form-control" />
                                 <span asp-validation-for="Gender" class="text-danger"></span>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">Contact Number</label>
+                                <h6 class="form-label">Contact Number</h6>
                                 <input asp-for="ContactNumber" class="form-control" />
                                 <span asp-validation-for="ContactNumber" class="text-danger"></span>
                             </div>
@@ -46,12 +47,12 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Home Address</label>
+                                <h6 class="form-label">Home Address</h6>
                                 <input asp-for="Address" class="form-control" />
                                 <span asp-validation-for="Address" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">E-mail Address</label>
+                                <h6 class="form-label">E-mail Address</h6>
                                 <input asp-for="EmailAddress" class="form-control" />
                                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
                             </div>
@@ -59,12 +60,12 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Office</label>
+                                <h6 class="form-label">Office</h6>
                                 <input asp-for="Type" class="form-control" />
                                 <span asp-validation-for="Type" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Position</label>
+                                <h6 class="form-label">Position</h6>
                                 <input asp-for="Position" class="form-control" />
                                 <span asp-validation-for="Position" class="text-danger"></span>
                             </div>
@@ -72,15 +73,14 @@
 
                         <div class="row mb-3">
                             <div class="col-md-12 mb-3">
-                                <label class="form-label">School</label>
+                                <h6 class="form-label">School</h6>
                                 <select asp-for="SchoolId" class="form-control" asp-items="ViewBag.SchoolId"></select>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-9 text-end">
-                                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-end">
+								<a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
                                 <input type="submit" value="Save Changes" class="btn btn-primary" />
                             </div>
                         </div>

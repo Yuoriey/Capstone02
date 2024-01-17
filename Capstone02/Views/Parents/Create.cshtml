@@ -3,64 +3,63 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<hr/>
 <h4 style="text-align: center">Enter Parent's Information</h4>
 <hr />
 
 <div class="container mt-6">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-    <div class="card">
-        <div class="card-body">
-            <form asp-action="Create">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Create">
 
-                <div class="row mb-3">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="col-sm-3">
-                        <h6 class="mb-0">Parent's Name</h6>
-                        @*<label asp-for="ParentName" class="control-label"></label>*@
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input asp-for="ParentName" class="form-control" />
-                        <span asp-validation-for="ParentName" class="text-danger"></span>
-                    </div>
-                </div>
+                        <div class="row mb-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Parent's Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="ParentName" class="form-control" />
+                                <span asp-validation-for="ParentName" class="text-danger"></span>
+                            </div>
+                        </div>
 
-                <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <h6 class="mb-0">Contact Number</h6>
-                        @*<label asp-for="ContactNumber" class="control-label"></label>*@
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input asp-for="ContactNumber" class="form-control" />
-                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
-                    </div>
-                </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Contact Number</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                        </div>
 
-                <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <h6 class="mb-0">Child</h6>
-                        @*<label asp-for="StudentId" class="control-label">Student Name</label>*@
-                    </div>
-                    <div class="col-sm-9 text-secondary">
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Child</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
                                 <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentID"></select>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-9 text-end">
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                        <input type="submit" value="Submit" class="btn btn-primary" />
-                    </div>
-                </div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
 
-            </form>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-		</div>
-	</div>
 </div>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -3,79 +3,92 @@
 @{
     ViewData["Title"] = "Details";
 }
+<hr />
+<h3 style="text-align: center">Student's Details</h3>
+<hr />
 
-<h1>Details</h1>
+<div class="container mt-6">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class = "col-sm-3">
+                        First Name
+                        @*@Html.DisplayNameFor(model => model.FirstName)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        Last Name
+                        @*@Html.DisplayNameFor(model => model.LastName)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        Age
+                        @*@Html.DisplayNameFor(model => model.Age)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.Age)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        Gender
+                        @*@Html.DisplayNameFor(model => model.Gender)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.Gender)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        Home Address
+                        @*@Html.DisplayNameFor(model => model.Address)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.Address)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        E-mail Address
+                        @*@Html.DisplayNameFor(model => model.EmailAddress)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.EmailAddress)
+                        </dd>
+                        <dt class = "col-sm-3">
+                        Contact Number
+                        @*@Html.DisplayNameFor(model => model.ContactNumber)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.ContactNumber)
+						</dd>
+						<dt class="col-sm-3">
+						Year Level
+				    	@*@Html.DisplayNameFor(model => model.Year)*@
+						</dt>
+						<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Year)
+						</dd>
+                        <dt class = "col-sm-3">
+                        Section
+                        @*@Html.DisplayNameFor(model => model.Section)*@
+                        </dt>
+                        <dd class = "col-sm-9">
+                        @Html.DisplayFor(model => model.Section)
+                        </dd>
+                        
+	                </dl>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12 d-flex justify-content-end">
+                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                            @*<a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.Id">Edit</a>*@
+                        </div>
+					</div>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            First Name
-            @*@Html.DisplayNameFor(model => model.FirstName)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            Last Name
-            @*@Html.DisplayNameFor(model => model.LastName)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            Age
-            @*@Html.DisplayNameFor(model => model.Age)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            Gender
-            @*@Html.DisplayNameFor(model => model.Gender)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            Home Address
-            @*@Html.DisplayNameFor(model => model.Address)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            E-mail Address
-            @*@Html.DisplayNameFor(model => model.EmailAddress)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-        <dt class = "col-sm-2">
-            Contact Number
-            @*@Html.DisplayNameFor(model => model.ContactNumber)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            Section
-            @*@Html.DisplayNameFor(model => model.Section)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Section)
-        </dd>
-        <dt class = "col-sm-2">
-            Year Level
-            @*@Html.DisplayNameFor(model => model.Year)*@
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-    </dl>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</div>
+

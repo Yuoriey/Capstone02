@@ -1,0 +1,16 @@
+.card {
+    border-radius: 15px;
+}
+
+h2 {
+    font-family: 'Arial Rounded MT'
+}
+
+h5, h6 {
+    font-family: 'Arial Rounded MT'
+}
+
+.card {
+    margin-left: 10px;
+    margin-right: 10px;
+}
