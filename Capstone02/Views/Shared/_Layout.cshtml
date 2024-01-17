@@ -1,140 +1,124 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Capstone02</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Capstone02.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Capstone02/Images" asp-append-version="true" />
+    <title>@ViewData["Title"] - AdminWebCore</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <environment include="Development">
+        <!-- VENDOR CSS -->
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <!-- Icons-->
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/lib/coreui/icons/css/coreui-icons.css" rel="stylesheet" />
+        <link href="~/lib/flag-icon-css/css/flag-icon.css" rel="stylesheet" />
+        <link href="~/lib/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+        <link href="~/lib/pace-progress/css/pace.css" rel="stylesheet" />
+        <!-- MAIN CSS -->
+        <link href="~/lib/coreui/css/style.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <!-- VENDOR CSS -->
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/lib/coreui/icons/css/coreui-icons.min.css" rel="stylesheet" />
+        <link href="~/lib/flag-icon-css/css/flag-icon.css" rel="stylesheet" />
+        <link href="~/lib/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+        <link href="~/lib/pace-progress/css/pace.css" rel="stylesheet" />
+        <!-- MAIN CSS -->
+        <link href="~/lib/coreui/css/style.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    @RenderSection("Headers", required: false)
+
+    <!-- ICONS -->
+    <link rel="icon" type="image/x-icon" sizes="96x96" href="/favicon.ico">
 </head>
 
-<body>
-    @if (SignInManager.IsSignedIn(User)) 
-    {
-    <button id="sidebarToggle" class="btn btn-dark">
-        <i class='bx'>
+<!-- BODY -->
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 
-        </i>
-    </button>
+    @*<partial name="_CookieConsentPartial" />*@
 
-    
-        <!-- Sidebar (initially hidden) -->
-        <div class="sidebar hidden">
-            <ul class="navbar-nav flex-column">
-                <li class="nav-item">
-                    <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                        <i class='bx bxs-user-detail'></i> @UserManager.GetUserName(User)!
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">
-                        <i class='bx bxs-receipt'></i> Transactions
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">
-                        <i class='bx bxs-group'></i> Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">
-                        <i class='bx bxs-school'></i> School
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">
-                        <i class='bx bx-male-female'></i> Parent
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">
-                        <i class='bx bxs-user-circle'></i> Student
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">
-                        <i class='bx bxs-credit-card'></i> Fees
-                    </a>
-                </li>
-            </ul>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="_LoginPartial.cshtml" />
-            </div>
-        </div> 
-    }
-   
-    <!-- Main content -->
-    <div class="content">
-        <header>
-            
-            
-            @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Capstone02</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <!-- NAVBAR -->
 
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">Employee</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">School</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">Parent</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">Student</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">Fees</a>
-                                </li>
-                            </ul>
-                        }
-                         else
-                        {
-                             <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        </ul>  
-                        } 
-                    </div>
+    <partial name="_NavBar" />
+    <!-- END NAVBAR -->
 
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial.cshtml" />
-                    </div>
-                </div>
-            </nav> *@
-        </header>
-        
-        <main role="main" class="pb-3">
+    <div class="app-body">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <!-- LEFT SIDEBAR -->
+            <partial name="_SideBar" />
+            <!-- END LEFT SIDEBAR -->
+            <!-- MAIN CONTENT -->
+        }
+        <main class="main">
+
+            <!-- Breadcrumb-->
+
             @RenderBody()
         </main>
-    </div>
-    
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- END MAIN CONTENT -->
+        <!-- ASIDE MENU -->
+        <!-- END ASIDE MENU -->
 
+
+    </div>
+
+    <style>
+        body.sidebar-minimized .nav-link i {
+            display: inline; /* Show icons when sidebar is minimized */
+        }
+
+        body.sidebar-minimized .nav-link .menu-text {
+            display: none; /* Hide menu text when sidebar is minimized */
+        }
+    </style>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <!-- CoreUI and necessary plugins-->
+        <script src="~/lib/pace-progress/js/pace.min.js"></script>
+
+        @*<script src="~/lib/perfect-scrollbar/dist/perfect-scrollbar.js"></script>*@
+        <script src="~/lib/coreui/dist/js/coreui.js"></script>
+        <!-- Plugins and scripts required by this view-->
+        @*<script src="~/lib/chart.js/dist/Chart.js"></script>
+        <script src="~/lib/coreui/js/custom-tooltips.js"></script>
+        <script src="~/lib/coreui/js/main.js"></script>*@
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- CoreUI and necessary plugins-->
+        <script src="~/lib/pace-progress/pace.min.js"></script>
+
+        <script src="~/lib/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+        <script src="~/lib/coreui/dist/js/coreui.min.js"></script>
+        <!-- Plugins and scripts required by this view-->
+        @*<script src="~/lib/chart.js/dist/Chart.min.js"></script>
+        <script src="~/lib/coreui/js/custom-tooltips.js"></script>
+        <script src="~/lib/coreui/js/main.js"></script>*@
+
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+>>>>>>> Partial
 </body>
 </html>

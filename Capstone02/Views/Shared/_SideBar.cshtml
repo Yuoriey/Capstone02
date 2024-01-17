@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">
+                    <i class='bx bxs-receipt'></i> <span class="menu-text">Transactions</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Employees" asp-action="Index">
+                    <i class='bx bxs-group'></i> <span class="menu-text">Employees</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Schools" asp-action="Index">
+                    <i class='bx bxs-school'></i> <span class="menu-text">Schools</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Parents" asp-action="Index">
+                    <i class='bx bx-male-female'></i> <span class="menu-text">Parents</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Students" asp-action="Index">
+                    <i class='bx bxs-user-circle'></i> <span class="menu-text">Students</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="PTAFees" asp-action="Index">
+                    <i class='bx bxs-credit-card'></i> <span class="menu-text">Fees</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <partial name="_LoginPartial.cshtml" />
+            </li>
+        </ul>
+
+        
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>
+
+<style>
+    .sidebar-minimized .nav-link i {
+        display: inline; /* Show icons when sidebar is minimized */
+    }
+
+    .sidebar-minimized .nav-link .menu-text {
+        display: none; /* Hide menu text when sidebar is minimized */
+    }
+</style>
