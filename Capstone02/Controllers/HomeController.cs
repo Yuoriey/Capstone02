@@ -1,5 +1,7 @@
+using Capstone02.Data;
 using Capstone02.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Capstone02.Controllers
@@ -7,15 +9,18 @@ namespace Capstone02.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult>Index()
         {
-            return View();
+            var applicationDbContext = _context.Transactions.Include(t => t.Employee).Include(t => t.PTAFee).Include(t => t.Parent);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         public IActionResult Privacy()
