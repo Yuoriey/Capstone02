@@ -18,6 +18,7 @@ namespace Capstone02.Data
         public DbSet<PTAFee> PTAFees { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<School> Schools { get; set; }
+        public DbSet<Role> Roles {  get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
