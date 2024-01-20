@@ -20,8 +20,21 @@ namespace Capstone02.Controllers
         public async Task<IActionResult>Index()
         {
             var applicationDbContext = _context.Transactions.Include(t => t.Employee).Include(t => t.PTAFee).Include(t => t.Parent);
+
+            ViewBag.OverallNumberOfStudentsPaid = await applicationDbContext
+                .Where(t => t.TransactionDate.Year == DateTime.Now.Year)
+                .Select(t => t.ParentId)
+                .Distinct()
+                .CountAsync();
+
+            ViewBag.OverallTotalPaidPTAFees = await applicationDbContext
+                .Where(t => t.TransactionDate.Year == DateTime.Now.Year)
+                .SumAsync(t => t.PTAFee.Amount);
+
             return View(await applicationDbContext.ToListAsync());
+
         }
+
 
         public IActionResult Privacy()
         {

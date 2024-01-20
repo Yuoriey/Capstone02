@@ -4,13 +4,20 @@
     ViewData["Title"] = "PTA Fee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+    int overallNumberOfStudentsPaid = Model.Select(t => t.ParentId).Distinct().Count();
+    decimal overallTotalPaidPTAFees = Model.Sum(t => t.PTAFee.Amount);
+}
+
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-blue">
                 <div class="inner">
-                    <h3> 13436 </h3>
-                    <p> Student Strength </p>
+                    <h3> @overallNumberOfStudentsPaid </h3>
+                    <p> Number of Students Paid </p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -22,8 +29,8 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-green">
                 <div class="inner">
-                    <h3> ₹185358 </h3>
-                    <p> Today’s Collection </p>
+                    <h3> @overallTotalPaidPTAFees </h3>
+                    <p> Overall Total Paid Fees </p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-money" aria-hidden="true"></i>
@@ -78,9 +85,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*    <td>
+                    @* <td>
             <div> @Html.DisplayFor(modelItem => item.Id)</div>
-            </td>*@
+            </td> *@
 
                 <td>
                     <div>@Html.DisplayFor(modelItem => item.Parent.ParentName)</div>
