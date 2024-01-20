@@ -1,0 +1,32 @@
+﻿<!-- Views/RedCross/Index.cshtml -->
+@model List<Transaction>
+
+<header style="text-align: center; padding: 20px;">
+    <h5>Iligan City East National High School - Santa Filomena</h5>
+    <h6>Butuan - Cagayan de Oro - Iligan Rd, Iligan City, Lanao del Norte</h6>
+    <h6>Since 1985</h6>
+</header>
+
+<h2 style="text-align: center">Athletics/Sports Fund Fee</h2>
+
+<div class="container mt-4">
+    <table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
+        <thead>
+            <tr>
+                <th>Transaction Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.TransactionDate.ToString("MM/dd/yyyy")</td>
+                    <td>$@transaction.PTAFee.Amount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Total Amount Paid for Red Cross Fee: $@ViewBag.TotalAmount</p>
+</div>

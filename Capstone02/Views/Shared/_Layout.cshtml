@@ -111,11 +111,29 @@
                             <span class="tooltip">Employees</span>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="PTAFees" asp-action="Index">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-bus-school"></i>
                                 <span class="link_name">PTAFees</span>
                             </a>
-                            <span class="tooltip">PTAFees</span>
+                            <div class="dropdown-menu" aria-labelledby="ptafeesDropdown">
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="LearnersAreas" asp-action="Index">Learners Areas/Org</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="Publications" asp-action="Index">Publication</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="BoyGirlsScouts" asp-action="Index">Boy/Girls Scout</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="Anti_TBFundDrive" asp-action="Index">Anti-TB Fund Drive</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="RFIDs" asp-action="Index">RF I.D.</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="SSGs" asp-action="Index">SSG</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
+                                <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
+
+                            </div>
+                        </div>
+                        <span class="tooltip">PTAFees</span>
                         </li>
                         <li>
                             <a asp-area="" asp-controller="Students" asp-action="Index">
@@ -144,8 +162,7 @@
                             <span class="link_name">Roles</span>
                         </a>
                         <span class="tooltip">Roles</span>
-                    </li>
-
+                    </li
                 </ul>
 
                 <partial name="_LoginPartial" />
@@ -194,7 +211,12 @@
                 }
             }
         }
+
+        });
+
     </script>
+
+
    
     <div class="container">
     

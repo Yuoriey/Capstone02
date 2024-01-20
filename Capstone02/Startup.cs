@@ -115,6 +115,66 @@ namespace Capstone02
                     name: "default",
                      pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                name: "redcross",
+                pattern: "RedCross/{action=Index}/{id?}",
+                defaults: new { controller = "RedCrosses" });
+
+                endpoints.MapControllerRoute(
+                name: "ptamembership",
+                pattern: "PTAMembership/{action=Index}/{id?}",
+                defaults: new { controller = "PTAMemberships" });
+
+                endpoints.MapControllerRoute(
+                name: "learnersareas",
+                pattern: "LearnersAreas/{action=Index}/{id?}",
+                defaults: new { controller = "LearnersAreas" });
+
+                endpoints.MapControllerRoute(
+                name: "insurance",
+                pattern: "Insurance/{action=Index}/{id?}",
+                defaults: new { controller = "Insurances" });
+
+                endpoints.MapControllerRoute(
+                name: "publication",
+                pattern: "Publications/{action=Index}/{id?}",
+                defaults: new { controller = "Publications" });
+
+                endpoints.MapControllerRoute(
+                name: "boygirlscout",
+                pattern: "BoyGirlScouts/{action=Index}/{id?}",
+                defaults: new { controller = "BoyGirlsScouts" });
+
+                endpoints.MapControllerRoute(
+                name: "anti_tbfunddrive",
+                pattern: "Anti_TBFundDrive/{action=Index}/{id?}",
+                defaults: new { controller = "Anti_TBFundDrive" });
+
+                endpoints.MapControllerRoute(
+                name: "rfid",
+                pattern: "RFIDs/{action=Index}/{id?}",
+                defaults: new { controller = "RFIDs" });
+
+                endpoints.MapControllerRoute(
+                name: "ssg",
+                pattern: "SSGs/{action=Index}/{id?}",
+                defaults: new { controller = "SSGs" });
+
+                endpoints.MapControllerRoute(
+                name: "gptaelectricity",
+                pattern: "GPTAElectricities/{action=Index}/{id?}",
+                defaults: new { controller = "GPTAElectricities" });
+
+                endpoints.MapControllerRoute(
+                name: "athleticssportsfund",
+                pattern: "AthleticsSportsFunds/{action=Index}/{id?}",
+                defaults: new { controller = "AthleticsSportsFunds" });
+
+                endpoints.MapControllerRoute(
+                name: "researchfund",
+                pattern: "ResearchFunds/{action=Index}/{id?}",
+                defaults: new { controller = "ResearchFunds" });
+
 
                 endpoints.MapRazorPages();
             });
