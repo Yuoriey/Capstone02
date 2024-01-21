@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Capstone02.Models.Employee>
 
 @{
+
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <header style="text-align: center; padding: 20px;">
@@ -10,60 +12,78 @@
     <h6>Since 1985</h6>
 </header>
 
-<h2 style="text-align: center">O F F I C E R S</h2>
+<h5>List of Employees</h5>
 
-<div class="container mt-4">
-    
-    <p>
-        <a asp-action="Create" class="btn btn-primary">Create New</a>
-    </p>
+<p>
+    <a asp-action="Create">+ add new account</a>
+</p>
 
-    <table class="table">
-        <thead>
+<table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
+
+    <thead class="thead-light">
+        <tr>
+
+            @*<th class="small-col">Id</th>*@
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Address</th>
+            <th>Position</th>
+            <th>Email Address</th>
+            <th class="small-medium">Gender</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    First Name
-                    @* @Html.DisplayNameFor(model => model.FirstName) *@
-                </th>
-                <th>
-                    Last Name
-                    @* @Html.DisplayNameFor(model => model.LastName) *@
-                </th>
-                <th>
-                    Office
-                    @* @Html.DisplayNameFor(model => model.Type) *@
-                </th>
-                <th>
-                    Position
-                    @* @Html.DisplayNameFor(model => model.Position) *@
-                </th>
-                <th></th>
+                @*    <td>
+            <div> @Html.DisplayFor(modelItem => item.Id)</div>
+            </td>*@
+
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.FirstName)</div>
+                </td>
+                <td>
+                    <div>
+                        <span></span> @Html.DisplayFor(modelItem => item.LastName)
+                    </div>
+                </td>
+                <td>
+                    <div class="small text-muted">
+                        <span></span> @Html.DisplayFor(modelItem => item.Address)
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <div> @Html.DisplayFor(modelItem => item.Position) </div>
+                    </div>
+                </td>
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.EmailAddress)</div>
+                </td>
+
+              <td>
+                    <div>@Html.DisplayFor(modelItem => item.Gender)</div>
+                </td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <i class='bx bx-edit bx-burst-hover action-icon'></i>
+                    </a>
+                    |
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <i class='bx bx-detail bx-burst-hover action-icon'></i>
+                    </a>
+                    |
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <i class='bx bx-trash-alt bx-burst-hover action-icon'></i>
+                    </a>
+                </td>
+
+
+
             </tr>
-        </thead>
-        
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Position)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" class="btn btn-primary mr-2" asp-route-id="@item.Id">Edit</a>
-                        <a asp-action="Details" class="btn btn-primary mr-2" asp-route-id="@item.Id">Details</a>
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        }
+    </tbody>
+</table>
+

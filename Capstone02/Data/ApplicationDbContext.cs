@@ -1,4 +1,5 @@
 ﻿using Capstone02.Models;
+using Capstone02.Models.PTAFeeType;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,20 @@ namespace Capstone02.Data
         public DbSet<PTAFee> PTAFees { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<School> Schools { get; set; }
+        public DbSet<Role> Roles {  get; set; }
+
+        public DbSet<Anti_TBFundDrive> Anti_TBFundDrives { get; set; }
+        public DbSet<AthleticsSportsFund> aAhleticsSportsFunds { get; set; }
+        public DbSet<BoyGirlsScout> BoyGirlsScouts { get; set; }
+        public DbSet<GPTAElectricity> GPTAElectricities { get; set; }
+        public DbSet<Insurance> Insurances { get; set; }
+        public DbSet<LearnersAreas> LearnersAreas { get; set; }
+        public DbSet<PTAMembership> PTAMemberships { get; set; }
+        public DbSet<Publication> Publications { get; set; }
+        public DbSet<RedCross> RedCrosses { get; set; }
+        public DbSet<ResearchFund> ResearchFunds { get; set; }
+        public DbSet<RFID> RFIDs { get; set; }
+        public DbSet<SSG> SSGs {  get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

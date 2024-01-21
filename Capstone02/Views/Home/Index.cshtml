@@ -1,58 +1,118 @@
-﻿@{
+﻿@model IEnumerable<Capstone02.Models.Transaction>
+
+@{
     ViewData["Title"] = "PTA Fee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <img src="C:\Users\msu-wone\Source\Repos\Capstone02\Capstone02\Images\ICENHSHome.JPG" class="card-img-top" alt="ICENHS Logo">
-                <div class="card-body">
-                    <h6 class="card-title">Welcome to Iligan City East National High School Payment System</h6>
-                    <p class="card-text">
-                        Welcome to the official payment collection system for Iligan City East National High School (ICENHS). Located in Brgy. Sta. Filomena, Iligan City, ICENHS has been providing quality education since 1985, formerly known as Regional Science High School.
-                    </p>
+@{
+    int overallNumberOfStudentsPaid = Model.Select(t => t.ParentId).Distinct().Count();
+    decimal overallTotalPaidPTAFees = Model.Sum(t => t.PTAFee.Amount);
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-blue">
+                <div class="inner">
+                    <h3> @overallNumberOfStudentsPaid </h3>
+                    <p> Number of Students Paid </p>
                 </div>
+                <div class="icon">
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-green">
+                <div class="inner">
+                    <h3> @overallTotalPaidPTAFees </h3>
+                    <p> Overall Total Paid Fees </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-orange">
+                <div class="inner">
+                    <h3> 5464 </h3>
+                    <p> New Admissions </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 723 </h3>
+                    <p> Faculty Strength </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-users"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
-
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/mission.jpg" class="card-img-top" alt="Mission Image">
-                <div class="card-body">
-                    <h5 class="card-title">Our Mission</h5>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/services.jpg" class="card-img-top" alt="Services Image">
-                <div class="card-body">
-                    <h5 class="card-title">Our Services</h5>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/Images/contact.jpg" class="card-img-top" alt="Contact Image">
-                <div class="card-body">
-                    <h5 class="card-title">Contact Us</h5>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <a href="#">uiuxstream</a>
         </div>
     </div>
 </div>
+<table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
+
+    <thead class="thead-light">
+        <tr>
+
+            @*<th class="small-col">Id</th>*@
+            <th></th>
+            <th>Payer</th>
+            <th>Employee</th>
+     
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                    @* <td>
+            <div> @Html.DisplayFor(modelItem => item.Id)</div>
+            </td> *@
+
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.Parent.ParentName)</div>
+                </td>
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.Employee.FirstName)</div>
+                </td>
+              
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <i class='bx bx-edit bx-burst-hover action-icon'></i>
+                    </a>
+                    |
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <i class='bx bx-detail bx-burst-hover action-icon'></i>
+                    </a>
+                    |
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <i class='bx bx-trash-alt bx-burst-hover action-icon'></i>
+                    </a>
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>

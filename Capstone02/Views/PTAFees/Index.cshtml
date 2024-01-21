@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_layout.cshtml";
 }
 
 <header style="text-align: center; padding: 20px;">
@@ -15,7 +16,7 @@
     <p>
         <a asp-action="Create" class="btn btn-primary">Create New</a>
     </p>
-    <table class="table">
+    <table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
         <thead>
             <tr>
                 <th>
