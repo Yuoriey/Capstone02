@@ -14,6 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\CoreUI\img\ICENHSContactUs.JPG" />
+    <Content Remove="wwwroot\CoreUI\img\ICENHSHome.JPG" />
+    <Content Remove="wwwroot\CoreUI\img\ICENHSLogo.png" />
+    <Content Remove="wwwroot\CoreUI\img\ICENHSMission.JPG" />
+    <Content Remove="wwwroot\CoreUI\img\ICENHSVision.JPG" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
@@ -29,6 +37,16 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\CoreUI\img\ICENHSContactUs.JPG" />
+    <None Include="wwwroot\CoreUI\img\ICENHSHome.JPG" />
+    <None Include="wwwroot\CoreUI\img\ICENHSLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\CoreUI\img\ICENHSMission.JPG" />
+    <None Include="wwwroot\CoreUI\img\ICENHSVision.JPG" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2792,6 +2810,15 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\ICENHSHome.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\ICENHSLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

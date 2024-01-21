@@ -38,7 +38,7 @@
     </button>
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link" href="/#">Dashboard</a>
+            <a class="nav-link" href="/#">Home</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
@@ -107,7 +107,7 @@
         
      
         <li class="nav-item dropdown">
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <a id="manage" class="nav-link text-dark mr-3" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                 <i class='bx bxs-user-detail'></i> @UserManager.GetUserName(User)!
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -157,10 +157,10 @@
             </div>
         </li>
     </ul>
-    <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+	@*<button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
         <span class="navbar-toggler-icon"></span>
     </button>
     <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>*@
 </header>

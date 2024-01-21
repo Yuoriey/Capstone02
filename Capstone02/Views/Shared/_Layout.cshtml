@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-TmMUAxEde3XF6sHvYoUGu4BMK7uY2EM4C2xg98YDlCNGaB+6alpHOnOyVJl2R9Kr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-nfMq2rJSqJ4EuSf5K7F4B5lCtZPfRmZUjhhM2XN9MBJvTcK2G1A/kz3eG0LEJKRg" crossorigin="anonymous"></script>
 
     <environment include="Development">
         <!-- VENDOR CSS -->
@@ -46,14 +48,16 @@
 </head>
 
 <!-- BODY -->
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<body class="app @(!SignInManager.IsSignedIn(User) ? "header-fixed sidebar-hidden" : "header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show")">
 
     @*<partial name="_CookieConsentPartial" />*@
 
     <!-- NAVBAR -->
-
+    @if (SignInManager.IsSignedIn(User))
+    {
     <partial name="_NavBar" />
     <!-- END NAVBAR -->
+	}
 
     <div class="app-body">
         @if (SignInManager.IsSignedIn(User))
@@ -77,13 +81,41 @@
     </div>
 
     <style>
-        body.sidebar-minimized .nav-link i {
-            display: inline; /* Show icons when sidebar is minimized */
-        }
+    .sidebar {
+		background-color: navy;
+		color: white;
+		height: 100%; /* Set height to 100% to fill the entire height of the container */
+		width: 250px;
+		overflow-y: auto;
+        transition: width 0.3s;
+	}
 
-        body.sidebar-minimized .nav-link .menu-text {
-            display: none; /* Hide menu text when sidebar is minimized */
-        }
+	.sidebar a {
+		text-decoration: none;
+    	color: white;
+	}
+
+	.sidebar a:hover {
+        background-color: #FFFADD;
+        color: navy;
+	}
+
+	.sidebar-minimizer {
+		color: white;
+	}
+
+	.sidebar-minimized .nav-link i {
+		display: inline; /* Show icons when sidebar is minimized */
+		padding-left: 15px;
+	}
+
+    body.sidebar-minimized .nav-link i {
+        display: inline; /* Show icons when sidebar is minimized */
+    }
+
+    body.sidebar-minimized .nav-link .menu-text {
+        display: none; /* Hide menu text when sidebar is minimized */
+    }
     </style>
 
     <environment include="Development">
@@ -119,5 +151,15 @@
 
     @RenderSection("Scripts", required: false)
 
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha384-..."></script>
+    <script>
+        $(document).ready(function () {
+            $(".sidebar-minimizer").on("click", function () {
+                $(".sidebar").toggleClass("sidebar-minimized");
+            });
+        });
+    </script>
+
 </body>
+
 </html>

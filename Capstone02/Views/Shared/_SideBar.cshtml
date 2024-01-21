@@ -2,6 +2,40 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+<style>
+	.sidebar {
+		background-color: navy;
+		color: white;
+		height: 100%; /* Set height to 100% to fill the entire height of the container */
+		width: 250px;
+		overflow-y: auto;
+        transition: width 0.3s;
+	}
+
+	.sidebar a {
+		text-decoration: none;
+    	color: white;
+	}
+
+	.sidebar a:hover {
+        background-color: #FFFADD;
+        color: navy;
+	}
+
+	.sidebar-minimizer {
+		color: white;
+	}
+
+	.sidebar-minimized .nav-link i {
+		display: inline; /* Show icons when sidebar is minimized */
+		padding-left: 15px;
+	}
+
+	.sidebar-minimized .nav-link .menu-text {
+		display: none; /* Hide menu text when sidebar is minimized */
+	}
+</style>
+
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
@@ -44,13 +78,3 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
-
-<style>
-    .sidebar-minimized .nav-link i {
-        display: inline; /* Show icons when sidebar is minimized */
-    }
-
-    .sidebar-minimized .nav-link .menu-text {
-        display: none; /* Hide menu text when sidebar is minimized */
-    }
-</style>
