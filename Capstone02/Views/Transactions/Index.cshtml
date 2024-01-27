@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<Capstone02.Models.Transaction>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
+
+
 
 <h1>Transactions</h1>
 
@@ -35,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.TransactionDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Parent.ParentName)

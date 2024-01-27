@@ -1,8 +1,11 @@
-﻿namespace Capstone02.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Capstone02.Models
 {
     public class Employee
     {
         public int Id { get; set; }
+    
 		public required string FirstName { get; set; }
 		public required string LastName { get; set; }
         public required string Type { get; set; }
@@ -12,7 +15,12 @@
 		public required string Address { get; set; }
 		public required string EmailAddress { get; set; }
 		public required string ContactNumber { get; set; }
-		
+
+
+        public string FullName
+        {
+            get { return $"{FirstName} {LastName}"; }
+        }
 
         public int? SchoolId { get; set; }
         public virtual School School { get; set; }
