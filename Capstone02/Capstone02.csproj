@@ -19,6 +19,7 @@
     <Content Remove="wwwroot\CoreUI\img\ICENHSLogo.png" />
     <Content Remove="wwwroot\CoreUI\img\ICENHSMission.JPG" />
     <Content Remove="wwwroot\CoreUI\img\ICENHSVision.JPG" />
+    <Content Remove="wwwroot\images\ICENHSLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,9 @@
     </None>
     <None Include="wwwroot\CoreUI\img\ICENHSMission.JPG" />
     <None Include="wwwroot\CoreUI\img\ICENHSVision.JPG" />
+    <None Include="wwwroot\images\ICENHSLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

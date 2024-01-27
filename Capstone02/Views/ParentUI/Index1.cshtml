@@ -1,0 +1,310 @@
+﻿<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    nav {
+        background-color: var(--color-default);
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        nav img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+    .logout-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .logout-text {
+        margin-left: 5px;
+    }
+
+    header {
+        color: var(--color-default);
+        text-align: left;
+        padding: 30px 0;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin: 10px 0;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 0px;
+    }
+
+    h5 {
+        font-size: 1.2em;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #selected-child {
+        font-size: 1.2em;
+        font-weight: bold;
+        background-color: darkgray;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .display-box {
+        position: absolute;
+        top: 17%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        background-color: var(--color-default);
+        color: white;
+        padding: 10px;
+        border-radius: 12px;
+        text-align: center;
+        width: 200px;
+    }
+
+    .display-box p1 {
+        font-size: 1em;
+    }
+
+    .display-box p {
+        font-size: 2em;
+    }
+
+    .grand-total {
+        position: absolute;
+        top: 17%;
+        left: 71%;
+        transform: translate(-50%, -50%);
+        background-color: lightgray;
+        color: var(--color-default);
+        padding: 10px;
+        border-radius: 12px;
+        border-width: 3px;
+        border-color: var(--color-default);
+        text-align: center;
+        width: 200px;
+    }
+
+        .grand-total p1 {
+            font-size: 1em;
+        }
+
+        .grand-total p {
+            font-size: 2em;
+        }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px auto;
+        margin-top: auto;
+    }
+
+    .card {
+        width: 30%;
+        margin-bottom: 20px;
+        border: 1px solid var(--color-default);
+        border-radius: 15px;
+        border-width: 3px;
+        border-color: var(--color-default);
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+        .card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+    .fee-details {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .fee-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .fee-amount {
+        font-size: 1em;
+        margin-top: 5px;
+    }
+
+    .highlight-paid {
+        background-color: #00FF00;
+        border-radius: 5px;
+    }
+
+    .highlight-not-paid {
+        background-color: #E57373;
+        border-radius: 5px;
+    }
+
+    .button-container {
+        text-align: right;
+        margin-top: auto;
+        margin-bottom: 20px;
+    }
+
+    .action-button {
+        padding: 10px 20px;
+        background-color: var(--color-default);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .action-button:hover {
+            background-color: #4d5569;
+        }
+</style>
+
+<nav>
+    <div>
+        <img src="../Images/ICENHSLogo.png" alt="ICENHS Logo" />
+        <span>ICENHS - PTA Fees Collection Management System (PTAFCMS)</span>
+    </div>
+    <div class="logout-icon mr-2" onclick="logout()">
+        <i class='bx bx-log-out mr-2'></i>
+        <span class="logout-text">Logout</span>
+    </div>
+</nav>
+
+<header>
+    <h1>Pay your balance here</h1>
+    <h5>Select fee/s to pay by checking the boxes.</h5>
+    <div class="grand-total">
+        <p1>Grand Total:</p1>
+        <p>₱ 0.00</p>
+    </div>
+	<div class="display-box">
+		<p1>Balance:</p1>
+		<p>₱ 725.00</p>
+	</div>
+	<p2 id="selected-child"></p2>
+</header>
+
+<div class="card-container">
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Red Cross">
+        <p class="fee-details">
+            <span class="fee-name">Red Cross</span>
+            <span class="fee-amount">₱ 60.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="PTA Membership">
+        <p class="fee-details">
+            <span class="fee-name">PTA Membership</span>
+            <span class="fee-amount">₱ 100.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Learner Areas / ORG">
+        <p class="fee-details">
+            <span class="fee-name">Learner Areas / ORG</span>
+            <span class="fee-amount">₱ 80.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Insurance">
+        <p class="fee-details">
+            <span class="fee-name">Insurance</span>
+            <span class="fee-amount">₱ 50.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Publication">
+        <p class="fee-details">
+            <span class="fee-name">Publication</span>
+            <span class="fee-amount">₱ 90.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Boy / Girls Scout">
+        <p class="fee-details">
+            <span class="fee-name">Boy / Girls Scout</span>
+            <span class="fee-amount">₱ 60.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+	</div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Anti-TB Fund Drive">
+        <p class="fee-details">
+            <span class="fee-name">Anti-TB Fund Drive</span>
+            <span class="fee-amount">₱ 5.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="RF I.D.">
+        <p class="fee-details">
+            <span class="fee-name">RF I.D.</span>
+            <span class="fee-amount">₱ 100.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="SSG">
+        <p class="fee-details">
+            <span class="fee-name">SSG</span>
+            <span class="fee-amount">₱ 50.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="GPTA Electricity">
+        <p class="fee-details">
+            <span class="fee-name">GPTA Electricity</span>
+            <span class="fee-amount">₱ 10.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Athletics / Sports Fund">
+        <p class="fee-details">
+            <span class="fee-name">Athletics / Sports Fund</span>
+            <span class="fee-amount">₱ 20.00</span>
+        </p>
+        <p class="highlight-paid">Paid</p>
+    </div>
+    <div class="card">
+        <input type="checkbox" name="fee[]" value="Research Fund (STE Only)">
+        <p class="fee-details">
+            <span class="fee-name">Research Fund (STE Only)</span>
+            <span class="fee-amount">₱ 100.00</span>
+        </p>
+        <p class="highlight-not-paid">Not Paid</p>
+    </div>
+</div>
+
+<div class="button-container">
+    <a class="btn btn-secondary text-white">Cancel</a>
+    <a asp-page="/Views/PafcerentUI/Index1" class="btn btn-primary">Upload Photo</a>
+    <a class="btn btn-primary text-white">Submit</a>
+</div>
+
+<script>
+    var selectedChild = sessionStorage.getItem('selectedChild');
+    document.getElementById("selected-child").innerText = "Pay for: " + selectedChild;
+</script>

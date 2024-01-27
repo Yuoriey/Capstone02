@@ -79,23 +79,20 @@
 </head>
 
 
-<body class="app flex-row align-items-center">
+<body class="align-items-center margin-auto">
    
     @if (SignInManager.IsSignedIn(User))
     {
         <div class="row">
             <div class="sidebar open">
-          <div class="row logo_details">
-    <div class="logo_info">
-        <img src="/images/msu-logo.png" alt="E-MSUnity Logo" class="img-fluid logo_image">
-        <div class="logo_name">PTAFee</div>
-    </div>
-    <i class="bx bx-menu" id="btn"></i>
-</div>
-
-
-                <ul class="nav-list">
-                
+                <div class="row logo_details">
+                   <div class="logo_info">
+                        <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
+                        <div class="logo_name">PTAFCMS</div>
+                   </div>
+                        <i class="bx bx-menu" id="btn"></i>
+                </div>
+                    <ul class="nav-list">
                         <li>
                             <a asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="bx bxs-dashboard"></i>
@@ -116,7 +113,7 @@
                                 <i class="bx bx-bus-school"></i>
                                 <span class="link_name">PTAFees</span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="ptafeesDropdown">
+                            <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
@@ -130,7 +127,6 @@
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
                                 <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
-
                             </div>
                         </div>
                         <span class="tooltip">PTAFees</span>
@@ -156,15 +152,21 @@
                             </a>
                             <span class="tooltip">Transactions</span>
                         </li>
-                    <li>
-                        <a asp-area="" asp-controller="Roles" asp-action="Index">
-                            <i class="bx bxs-inbox"></i>
-                            <span class="link_name">Roles</span>
-                        </a>
-                        <span class="tooltip">Roles</span>
-                    </li
-                </ul>
-
+                        <li>
+                            <a asp-area="" asp-controller="Roles" asp-action="Index">
+                                <i class="bx bxs-inbox"></i>
+                                <span class="link_name">Roles</span>
+                            </a>
+                            <span class="tooltip">Roles</span>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="ParentUI" asp-action="Index">
+                                <i class="bx bxs-inbox"></i>
+                                <span class="link_name">Parent's Interface</span>
+                            </a>
+                            <span class="tooltip">Parent's Interface</span>
+                        </li>
+                    </ul>
                 <partial name="_LoginPartial" />
             </div>
             <section class="home-section">
@@ -177,6 +179,7 @@
                 </main>
             </section>
         </div>
+
 
 
 
@@ -211,8 +214,6 @@
                 }
             }
         }
-
-        });
 
     </script>
 

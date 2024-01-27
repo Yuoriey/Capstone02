@@ -1,0 +1,213 @@
+﻿<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    nav {
+        background-color: var(--color-default);
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        nav img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+    .logout-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .logout-text {
+        margin-left: 5px;
+    }
+
+    table {
+        width: 60%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid var(--color-default);
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: var(--color-default);
+        color: white;
+        text-align: center;
+    }
+
+    td {
+        background-color: lightgray;
+    }
+
+    .highlight-paid {
+        background-color: #00FF00;
+        border-radius: 5px;
+    }
+
+    .highlight-not-paid {
+        background-color: #E57373;
+        border-radius: 5px;
+    }
+
+    .border-right {
+        color: white;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .action-button {
+        padding: 10px 20px;
+        background-color: var(--color-default); /* Use your desired button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .action-button:hover {
+            background-color: #4d5569; /* Change to your desired hover color */
+        }
+
+    header {
+        color: var(--color-default);
+        text-align: left;
+        padding: 30px 0;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin: 10px 0;
+    }
+
+    p {
+        font-size: 1.4em;
+        margin: 0;
+    }
+
+    .child-dropdown {
+        margin-top: 10px;
+    }
+
+    select {
+        padding: 6px;
+        font-size: 1em;
+        border: 1px solid var(--color-default);
+        border-radius: 5px;
+        width: 190px;
+    }
+
+    label {
+        font-size: 1.2em;
+    }
+
+    .display-box {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--color-default);
+        color: white;
+        padding: 10px;
+        border-radius: 12px;
+        text-align: center;
+        width: 200px;
+    }
+
+    .display-box p1 {
+        font-size: 1em;
+    }
+
+    .display-box p {
+        font-size: 2em;
+    }
+</style>
+
+<nav>
+    <div>
+        <img src="../Images/ICENHSLogo.png" alt="ICENHS Logo" />
+        <span>ICENHS - PTA Fees Collection Management System (PTAFCMS)</span>
+    </div>
+    <div class="logout-icon mr-2" onclick="logout()">
+        <i class='bx bx-log-out mr-2'></i>
+        <span class="logout-text">Logout</span>
+    </div>
+</nav>
+
+<header>
+        <h1>Welcome!</h1>
+        <p>Al-Yoshry L. Abdulfatah</p>
+        <div class="child-dropdown">
+            <label for="children">Child/ren:</label>
+            <select id="children" name="children">
+            <option value="Alano S. Abdulfatah" selected>Alano S. Abdulfatah</option>
+            <option value="Asnaina S. Abdulfatah">Asnaina S. Abdulfatah</option>
+            <option value="Aslanie S. Abdulfatah">Aslanie S. Abdulfatah</option>
+            </select>
+        </div>
+        <div class="display-box">
+            <p1>Total Balance:</p1>
+            <p>₱ 2, 175.00</p>
+        </div>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th class="border-right">List of Fees</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Red Cross</td>
+            <td><span class="highlight-paid">Paid</span></td>
+        </tr>
+        <tr>
+            <td>PTA Membership</td>
+            <td><span class="highlight-not-paid">Not Paid</span></td>
+        </tr>
+        <tr>
+            <td>Insurance</td>
+            <td><span class="highlight-paid">Paid</span></td>
+        </tr>
+        <tr>
+            <td>Publication</td>
+            <td><span class="highlight-paid">Paid</span></td>
+        </tr>
+        <tr>
+            <td>RF I.D.</td>
+            <td><span class="highlight-paid">Paid</span></td>
+        </tr>
+        <tr>
+            <td>SSG</td>
+            <td><span class="highlight-not-paid">Not Paid</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="button-container">
+    <a  asp-action="Index1" class="btn btn-primary">Click here to Pay</a> 
+</div>
+
+<script>
+    document.querySelector('.btn-primary').addEventListener('click', function () {
+        var selectedChild = document.getElementById("children").value;
+        sessionStorage.setItem('selectedChild', selectedChild);
+    });
+</script>

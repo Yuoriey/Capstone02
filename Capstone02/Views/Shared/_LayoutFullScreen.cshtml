@@ -9,7 +9,7 @@
     <environment include="Development">
         <!-- VENDOR CSS -->
         <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-        <!-- Icons-->
+        <!-- Icons -->
         <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="~/lib/coreui/icons/css/coreui-icons.css" rel="stylesheet" />
         <link href="~/lib/flag-icon-css/css/flag-icon.css" rel="stylesheet" />
@@ -41,13 +41,11 @@
 </head>
 
 <!-- BODY -->
-<body class="app flex-row align-items-center">
+<body>
 
-    <div class="container">
-        <div class="row justify-content-center">
+        <div>
             @RenderBody()
         </div>
-    </div>
     
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

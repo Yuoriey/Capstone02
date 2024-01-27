@@ -5,34 +5,36 @@
 @model LoginModel
 
 <style>
+    body {
+        background-image: url("~/CoreUI/img/ICENHSLogin1.JP");
+        background-size: cover;
+        height: 100vh;
+        margin: 0px;
+    }
+
+    .card {
+        border-radius: 15px;
+        border-color: navy;
+        border-width: 4px;
+    }
+
     .slanted-background {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to top left, navy 50%, transparent 50%);
-        z-index: -1;
-
-    }
-
-    .slanted-background-alt {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom right, transparent 50%);
+        background: linear-gradient(navy 100%, transparent 50%);
         z-index: -1;
     }
 
 </style>
 
-<img class="slanted-background-alt" src="~/CoreUI/img/ICENHSLogin1.JPG"/>
+<img class="slanted-background"/>
 
-<div class="slanted-background"></div>
+<div class="slanted-background-alt"></div>
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-auto">
     <div class="row justify-content-center">
         <div class="col-4 mx-auto">
             <div class="card">
@@ -77,6 +79,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
