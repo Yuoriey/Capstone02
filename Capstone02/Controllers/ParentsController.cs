@@ -7,20 +7,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Capstone02.Data;
 using Capstone02.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Capstone02.Controllers
 {
     public class ParentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ParentsController(ApplicationDbContext context)
+        public ParentsController(ApplicationDbContext context,
+            RoleManager<IdentityRole> roleManager,
+            UserManager<IdentityUser> userManager)
         {
+            _roleManager = roleManager;
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Parents
-        public async Task<IActionResult> Index()
+        private async Task AssignRoleToUser(IdentityUser user, string role)
+        {
+            if (await _roleManager.RoleExistsAsync(role))
+            {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+        }
+
+
+
+    // GET: Parents
+    public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Parents.Include(p => p.Student);
             return View(await applicationDbContext.ToListAsync());
@@ -57,7 +75,7 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ParentName,ContactNumber,StudentId")] Parent parent)
+        public async Task<IActionResult> Create([Bind("Id,ParentName,ContactNumber,StudentId, EmailAddress, Password")] Parent parent)
         {
             //if (ModelState.IsValid)
             //{
@@ -65,6 +83,19 @@ namespace Capstone02.Controllers
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
             //}
+
+            var user = new IdentityUser { UserName = parent.EmailAddress, Email = parent.EmailAddress };
+            var result = await _userManager.CreateAsync(user, parent.Password);
+
+            if (result.Succeeded)
+            {
+                await AssignRoleToUser(user, "Parent");
+                var claim = new Claim("ParentClaim", "True");
+                await _userManager.AddClaimAsync(user, new Claim(user.Id, user.Email));
+                await _context.SaveChangesAsync();
+                return Redirect(nameof(Index));
+            }
+
             ViewData["StudentId"] = new SelectList(_context.Students, "Id", "FirstName", parent.StudentId);
             return RedirectToAction(nameof(Index));
         }

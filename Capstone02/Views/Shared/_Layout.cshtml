@@ -83,16 +83,26 @@
    
     @if (SignInManager.IsSignedIn(User))
     {
-
-        <div class="row">
-            <div class="sidebar open">
-                <div class="row logo_details">
-                    <div class="logo_info">
-                        <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
-                        <div class="logo_name">PTAFCMS</div>
+         @if (User.IsInRole("Parent"))
+        {
+            <div class="container">
+                @RenderBody()
+            </div>
+            <script>
+                window.location.href = '@Url.Action("Index", "ParentUI")';
+            </script>
+        }
+        else 
+        { 
+            <div class="row">
+                <div class="sidebar open">
+                    <div class="row logo_details">
+                        <div class="logo_info">
+                            <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
+                            <div class="logo_name">PTAFCMS</div>
+                        </div>
+                        <i class="bx bx-menu" id="btn"></i>
                     </div>
-                    <i class="bx bx-menu" id="btn"></i>
-                </div>
                 @if (User.IsInRole("Admin"))
                 {
                     <ul class="nav-list">
@@ -171,7 +181,7 @@
                         </li>
                     </ul>
                 }
-                else
+                else if (User.IsInRole("Employee"))
                 {
                     <ul class="nav-list">
                         <li>
@@ -233,6 +243,7 @@
                             </a>
                             <span class="tooltip">Roles</span>
                         </li>
+
                         <li>
                             <a asp-area="" asp-controller="ParentUI" asp-action="Index">
                                 <i class="bx bxs-inbox"></i>
@@ -240,23 +251,21 @@
                             </a>
                             <span class="tooltip">Parent's Interface</span>
                         </li>
+                        
                     </ul>
-                }
+                 }
+                
                 <partial name="_LoginPartial" />
             </div>
             <section class="home-section">
-              
                 <main class="main">
-             
                     <div class="container">
                         @RenderBody()
                     </div>
                 </main>
             </section>
         </div>
-
-
-
+      }
 
     }
     else
@@ -320,3 +329,4 @@
 </body>
 
 </html>
+}

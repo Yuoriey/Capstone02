@@ -1,10 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Capstone02.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone02.Controllers
 {
     public class ParentUIController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public ParentUIController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public  IActionResult Index()
         {
             return View();
         }
