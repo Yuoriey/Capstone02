@@ -72,20 +72,25 @@ namespace Capstone02.Controllers
 
             //if (ModelState.IsValid)
             //{
-
-                //var currentUserEmail = HttpContext.User.Identity.Name;
-                //var employee = await _context.Employees.FirstOrDefaultAsync(e => e.EmailAddress == currentUserEmail);
-                //if (employee != null)
-                //{
-                    //transaction.EmployeeId = employee.Id;
-                    _context.Add(transaction);
-                    await _context.SaveChangesAsync();
-                    //return RedirectToAction(nameof(Index));
-                //}
-                //else
-                //{
-                //    return RedirectToAction("Error", "Home");
-                //}
+            TimeZoneInfo ph_TimeZone = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+            DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, ph_TimeZone);
+            //transaction.TransactionDate = currentTime;
+            //var currentUserEmailAddress = emailngUSER ;
+            //var employee = await _context.Employees.Where(m => m.EmailAddress == currentUser);
+            //transaction.EmployeeId = employee.Id;
+            //var currentUserEmail = HttpContext.User.Identity.Name;
+            //var employee = await _context.Employees.FirstOrDefaultAsync(e => e.EmailAddress == currentUserEmail);
+            //if (employee != null)
+            //{
+            //transaction.EmployeeId = employee.Id;
+            _context.Add(transaction);
+            await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Error", "Home");
+            //}
 
 
             //}
@@ -189,14 +194,14 @@ namespace Capstone02.Controllers
             {
                 _context.Transactions.Remove(transaction);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TransactionExists(int id)
         {
-          return (_context.Transactions?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Transactions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
