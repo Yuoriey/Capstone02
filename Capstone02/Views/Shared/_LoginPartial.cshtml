@@ -8,11 +8,12 @@
         @if (SignInManager.IsSignedIn(User))
         {
 
-             <li class="nav-item">
+            <li class="nav-item">
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-white border-0"><i class='bx bx-log-out'></i> <span class="menu-text">Logout</span></button>
+                    <a id="logout" class="nav-link btn btn-link text-white border-0 hide-label" href="#"><i class='bx bx-log-out'></i> <span class="link_name">Logout</span></a>
+                    <span class="tooltip">Logout</span>
                 </form>
-            </li> 
+            </li>
         }
         else
         {
@@ -25,3 +26,15 @@
             </li>
         }
 	</ul>
+
+<script>
+    document.getElementById('logout').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var logoutForm = document.getElementById('logoutForm');
+        if (logoutForm) {
+            
+            logoutForm.submit();
+        }
+    });
+</script>

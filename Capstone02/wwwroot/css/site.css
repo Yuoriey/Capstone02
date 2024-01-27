@@ -33,10 +33,17 @@
     top: 0;
     left: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sidebar-minimized .hide-label .menu-text {
+    display: none;
 }
 
     .sidebar.open {
-        width: 250px;
+        width: 256px;
     }
 
     .sidebar .logo_details {
@@ -63,7 +70,7 @@
 
         .sidebar .logo_details .logo_name {
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             opacity: 0;
             transition: all .5s ease;
@@ -103,7 +110,7 @@
     .sidebar .nav-list {
         margin-top: 20px;
         height: 100%;
-        margin-left: -22px;
+        margin-left: 3px;
     }
 
     .sidebar li {
@@ -190,7 +197,7 @@
             width: 100%;
             height: 100%;
             transform: scaleX(0);
-            background-color: var(--color-second);
+            background-color: #FFFADD;
             border-radius: 5px;
             transition: transform 0.3s ease-in-out;
             transform-origin: left;
@@ -199,7 +206,7 @@
 
         .sidebar li a:hover::after {
             transform: scaleX(1);
-            color: var(--color-default)
+            background-color: #FFFADD;
         }
 
         .sidebar li a .link_name {
@@ -217,7 +224,7 @@
         .sidebar li a:hover .link_name,
         .sidebar li a:hover i {
             transition: all 0.5s ease;
-            color: white
+            color: black;
         }
 
     .sidebar.open li a .link_name {
@@ -296,6 +303,14 @@
 .dropdown .dropdown-menu .dropdown-item:hover {
     background: transparent;
     color: #c0ca33;
+}
+
+.dropdown-item:hover {
+    color: black !important;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+    color: black; /* Change the text color to black */
 }
 
 .dropdown .dropdown-menu .dropdown-item::before {
@@ -437,4 +452,40 @@ td.medium-col {
     text-align: right;
 }
 
+.user-greeting {
+    margin-top: auto; /* Push the user greeting to the bottom */
+    padding: 10px; /* Add padding for spacing */
+    margin-right: 5px;
+    margin-left: 2.5px;
+}
 
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.user-greeting, .user-profile {
+    margin-bottom: 0px;
+    transition: opacity .6s ease;
+}
+
+.sidebar:not(.open) .user-greeting,
+.sidebar:not(.open) .user-profile {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.user-greeting h2 {
+    white-space: nowrap;
+}
+
+.user-profile {
+    white-space: nowrap;
+}
+
+.user-profile {
+    margin-top: auto; /* Moves the user-profile to the bottom */
+    margin-right: 100px;
+    padding: 10px; /* Add padding for better spacing */
+}

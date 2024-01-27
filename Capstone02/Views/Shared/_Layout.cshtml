@@ -90,7 +90,7 @@
                         <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
                         <div class="logo_name">PTAFCMS</div>
                    </div>
-                        <i class="bx bx-menu" id="btn"></i>
+                        <i class="bx bx-menu mr-3" id="btn"></i>
                 </div>
                     <ul class="nav-list">
                         <li>
@@ -102,7 +102,7 @@
                         </li>
                         <li>
                             <a asp-area="" asp-controller="Employees" asp-action="Index">
-                                <i class="bx bx-walk"></i>
+                                <i class="bx bx-group"></i>
                                 <span class="link_name">Employees</span>
                             </a>
                             <span class="tooltip">Employees</span>
@@ -110,7 +110,7 @@
                         <li>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-bus-school"></i>
+                                <i class="bx bx-spreadsheet"></i>
                                 <span class="link_name">PTAFees</span>
                             </a>
                             <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
@@ -133,14 +133,14 @@
                         </li>
                         <li>
                             <a asp-area="" asp-controller="Students" asp-action="Index">
-                                <i class="bx bx-history"></i>
+                                <i class="bx bx-face"></i>
                                 <span class="link_name">Students</span>
                             </a>
                             <span class="tooltip">Students</span>
                         </li>
                         <li>
                         <a asp-area="" asp-controller="Parents" asp-action="Index">
-                            <i class="bx bx-history"></i>
+                            <i class="bx bx-user"></i>
                             <span class="link_name">Parents</span>
                         </a>
                         <span class="tooltip">Parents</span>
@@ -154,20 +154,36 @@
                         </li>
                         <li>
                             <a asp-area="" asp-controller="Roles" asp-action="Index">
-                                <i class="bx bxs-inbox"></i>
+                                <i class="bx bxs-user-plus"></i>
                                 <span class="link_name">Roles</span>
                             </a>
                             <span class="tooltip">Roles</span>
                         </li>
                         <li>
                             <a asp-area="" asp-controller="ParentUI" asp-action="Index">
-                                <i class="bx bxs-inbox"></i>
+                                <i class="bx bxs-user-detail"></i>
                                 <span class="link_name">Parent's Interface</span>
                             </a>
                             <span class="tooltip">Parent's Interface</span>
-                        </li>
+					    </li>
+					<partial name="_LoginPartial" />
                     </ul>
-                <partial name="_LoginPartial" />
+
+                @*<div class="user-greeting ml-3">
+					<h2 class="text-white">Good Day!</h2>
+			    </div>*@
+                <ul>
+					@if (SignInManager.IsSignedIn(User))
+					{
+                        <li class="nav-item">
+                        <a id="manage" class="nav-link text-white border-0 hide-label">
+                            <i class="bx bxs-user-circle mt-2"></i>
+                            <span class="link_name">@UserManager.GetUserName(User)</span></a>
+                            <span class="tooltip">User</span>
+						</li>
+                    }
+                </ul>  
+                
             </div>
             <section class="home-section">
               
