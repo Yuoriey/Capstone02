@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Capstone02.Data;
 using Capstone02.Models;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Capstone02.Controllers
 {
@@ -23,7 +26,10 @@ namespace Capstone02.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Transactions.Include(t => t.Employee).Include(t => t.PTAFee).Include(t => t.Parent);
-            return View(await applicationDbContext.ToListAsync());
+            var orderedTransactions = applicationDbContext
+                .OrderByDescending(t => t.TransactionDate);
+
+            return View(await orderedTransactions.ToListAsync());
         }
 
         // GET: Transactions/Details/5
@@ -48,7 +54,7 @@ namespace Capstone02.Controllers
         }
 
         // GET: Transactions/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FirstName");
             ViewData["PTAFeeId"] = new SelectList(_context.PTAFees, "Id", "Type");
@@ -61,19 +67,35 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TransactionDate,EmployeeId,ParentId,PTAFeeId")] Transaction transaction)
+        public async Task<IActionResult> Create(int id, [Bind("Id,TransactionDate,EmployeeId,ParentId,PTAFeeId")] Transaction transaction)
         {
+
             //if (ModelState.IsValid)
             //{
-                _context.Add(transaction);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+
+                //var currentUserEmail = HttpContext.User.Identity.Name;
+                //var employee = await _context.Employees.FirstOrDefaultAsync(e => e.EmailAddress == currentUserEmail);
+                //if (employee != null)
+                //{
+                    //transaction.EmployeeId = employee.Id;
+                    _context.Add(transaction);
+                    await _context.SaveChangesAsync();
+                    //return RedirectToAction(nameof(Index));
+                //}
+                //else
+                //{
+                //    return RedirectToAction("Error", "Home");
+                //}
+
+
             //}
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FirstName", transaction.EmployeeId);
             ViewData["PTAFeeId"] = new SelectList(_context.PTAFees, "Id", "Type", transaction.PTAFeeId);
             ViewData["ParentId"] = new SelectList(_context.Parents, "Id", "ParentName", transaction.ParentId);
             return RedirectToAction(nameof(Index));
         }
+
+
 
         // GET: Transactions/Edit/5
         public async Task<IActionResult> Edit(int? id)

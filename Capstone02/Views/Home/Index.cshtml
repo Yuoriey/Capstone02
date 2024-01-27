@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Capstone02.Models.Transaction>
 
+
 @{
     ViewData["Title"] = "PTA Fee";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,6 +9,8 @@
 @{
     int overallNumberOfStudentsPaid = Model.Select(t => t.ParentId).Distinct().Count();
     decimal overallTotalPaidPTAFees = Model.Sum(t => t.PTAFee.Amount);
+    int totalStudentsToday = ViewBag.TotalStudentsToday;
+    decimal totalAmountToday = ViewBag.TotalAmountToday;
 }
 
 
@@ -22,14 +25,14 @@
                 <div class="icon">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                 </div>
-                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="@Url.Action("ViewMoreStudentsPaid", "Home")" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-green">
                 <div class="inner">
-                    <h3> @overallTotalPaidPTAFees </h3>
+                    <h3> ₱@overallTotalPaidPTAFees </h3>
                     <p> Overall Total Paid Fees </p>
                 </div>
                 <div class="icon">
@@ -41,8 +44,8 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> 5464 </h3>
-                    <p> New Admissions </p>
+                    <h3> ₱@totalAmountToday </h3>
+                    <p> Paid Fees Today </p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -53,8 +56,8 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-red">
                 <div class="inner">
-                    <h3> 723 </h3>
-                    <p> Faculty Strength </p>
+                    <h3> @totalStudentsToday </h3>
+                    <p> Students Paid Today </p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
@@ -63,21 +66,23 @@
             </div>
         </div>
     </div>
-    <div class="row">
+@*     <div class="row">
         <div class="col-lg-3 col-sm-6">
             <a href="#">uiuxstream</a>
         </div>
-    </div>
+    </div> *@
 </div>
+
 <table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
 
     <thead class="thead-light">
         <tr>
 
-            @*<th class="small-col">Id</th>*@
-            <th></th>
+            <th>Cashier Name</th>
             <th>Payer</th>
-            <th>Employee</th>
+            <th>PTA Fee Paid</th>
+            <th>Amount</th>
+            <th>Transaction Date</th>
      
         </tr>
     </thead>
@@ -90,13 +95,22 @@
             </td> *@
 
                 <td>
+                    <div>@Html.DisplayFor(modelItem => item.Employee.FullName)</div>
+                </td>
+                <td>
                     <div>@Html.DisplayFor(modelItem => item.Parent.ParentName)</div>
                 </td>
                 <td>
-                    <div>@Html.DisplayFor(modelItem => item.Employee.FirstName)</div>
+                    <div>@Html.DisplayFor(modelItem => item.PTAFee.Type)</div>
+                </td>
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.PTAFee.Amount)</div>
+                </td>
+                <td>
+                    <div>@Html.DisplayFor(modelItem => item.TransactionDate)</div>
                 </td>
               
-                <td class="text-center">
+                @* <td class="text-center">
                     <a asp-action="Edit" asp-route-id="@item.Id">
                         <i class='bx bx-edit bx-burst-hover action-icon'></i>
                     </a>
@@ -108,7 +122,7 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">
                         <i class='bx bx-trash-alt bx-burst-hover action-icon'></i>
                     </a>
-                </td>
+                </td> *@
 
 
 

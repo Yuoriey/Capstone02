@@ -37,7 +37,14 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Migrations\" />
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\HomePage.jpg" />
+    <None Include="wwwroot\images\Logo1.png" />
   </ItemGroup>
 
   <ItemGroup>

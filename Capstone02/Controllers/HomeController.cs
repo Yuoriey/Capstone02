@@ -21,6 +21,9 @@ namespace Capstone02.Controllers
         {
             var applicationDbContext = _context.Transactions.Include(t => t.Employee).Include(t => t.PTAFee).Include(t => t.Parent);
 
+            var orderedTransactions = applicationDbContext
+                .OrderByDescending(t => t.TransactionDate);
+
             ViewBag.OverallNumberOfStudentsPaid = await applicationDbContext
                 .Where(t => t.TransactionDate.Year == DateTime.Now.Year)
                 .Select(t => t.ParentId)
@@ -31,10 +34,23 @@ namespace Capstone02.Controllers
                 .Where(t => t.TransactionDate.Year == DateTime.Now.Year)
                 .SumAsync(t => t.PTAFee.Amount);
 
-            return View(await applicationDbContext.ToListAsync());
+            var todayTransactions = await applicationDbContext
+                .Where(t => t.TransactionDate.Date == DateTime.Today)
+                .ToListAsync();
+
+            decimal totalAmountToday = todayTransactions.Sum(t => t.PTAFee.Amount);
+
+            decimal overallTotalAmount = await applicationDbContext
+                .SumAsync(t => t.PTAFee.Amount);
+
+            ViewBag.TotalStudentsToday = todayTransactions.Count();
+            ViewBag.TotalAmountToday = totalAmountToday;
+
+            ViewBag.OverallTotalAmount = overallTotalAmount;
+
+            return View(await orderedTransactions.ToListAsync());
 
         }
-
 
         public IActionResult Privacy()
         {
