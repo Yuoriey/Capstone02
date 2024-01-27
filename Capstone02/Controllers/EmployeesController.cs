@@ -7,18 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Capstone02.Data;
 using Capstone02.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Capstone02.Controllers
 {
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public EmployeesController(ApplicationDbContext context)
+        public EmployeesController(ApplicationDbContext context,
+             RoleManager<IdentityRole> roleManager,
+             UserManager<IdentityUser> userManager)
         {
+            _roleManager = roleManager;
             _context = context;
+            _userManager = userManager;
         }
 
+        private async Task AssignRoleToUser(IdentityUser user, string role)
+        {
+            if (await _roleManager.RoleExistsAsync(role))
+            {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+        }
         // GET: Employees
         public async Task<IActionResult> Index()
         {
@@ -57,14 +72,26 @@ namespace Capstone02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Type,Position,Age,Gender,Address,EmailAddress,ContactNumber,SchoolId")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Type,Position,Age,Gender,Address,EmailAddress,ContactNumber,SchoolId, Password")] Employee employee)
         {
             //if (ModelState.IsValid)
             //{
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-            //}
+
+
+            var user = new IdentityUser { UserName = employee.EmailAddress, Email = employee.EmailAddress };
+            var result = await _userManager.CreateAsync(user, employee.Password);
+
+            if (result.Succeeded)
+            {
+                await AssignRoleToUser(user, "Employee");
+                var claim = new Claim("EmployeeClaim", "True");
+                await _userManager.AddClaimAsync(user, new Claim(user.Id, user.Email));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
             ViewData["SchoolId"] = new SelectList(_context.Schools, "Id", "Name", employee.SchoolId);
             return Redirect(nameof(Index));
         }

@@ -1,35 +1,32 @@
-﻿@model IEnumerable<Capstone02.Models.Role>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Roles</h1>
-
+<h5>List of Roles</h5>
 <p>
-    <a asp-action="Create" class="btn btn-primary" >Create New</a>
+    <a asp-action="Create">Create a Role</a>
 </p>
-<table class="table">
-    <thead>
+
+
+<table id="tbllist" class="table table-responsive-sm table-hover table-outline mb-0">
+    <thead class="thead-light">
         <tr>
-            <th>
+            <th class="justify-content-center">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="justify-content-center">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
