@@ -22,6 +22,9 @@ namespace Capstone02.Controllers
         {
             return View();
         }
-
+        public IActionResult RedirectToParentUI()
+        {
+            return RedirectToAction("Index", "ParentUI");
+        }
     }
 }

@@ -89,7 +89,7 @@ namespace Capstone02.Controllers
 
             if (result.Succeeded)
             {
-                await AssignRoleToUser(user, "Parent");
+                await AssignRoleToUser(user, "Parents");
                 var claim = new Claim("ParentClaim", "True");
                 await _userManager.AddClaimAsync(user, new Claim(user.Id, user.Email));
                 await _context.SaveChangesAsync();

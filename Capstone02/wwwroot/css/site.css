@@ -489,3 +489,7 @@ td.medium-col {
     margin-right: 100px;
     padding: 10px; /* Add padding for better spacing */
 }
+
+.hidden-sidebar {
+    display: none;
+}

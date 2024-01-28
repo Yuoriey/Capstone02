@@ -28,12 +28,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css?v=@DateTime.UtcNow.Ticks.ToString()" />
     <link rel="stylesheet" href="~/css/home.css" />
-   
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
 
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
     <!------TABLE-------->
@@ -50,7 +50,7 @@
         $(document).ready(function () {
             $('#tbllist').DataTable({
                 dom: 'Bfrtip',
-                buttons:[
+                buttons: [
                     'print', 'pdf', 'excel'
                 ],
                 "pageLength": 5,
@@ -65,13 +65,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css">
     <!--EMERGENCY ALERT-->
-   <script>
-    // Function to handle "View Details" button click
-    function viewDetails() {
-        // Implement your logic to view details here
-        alert('View Details button clicked!');
-    }
-</script>
+    <script>
+        // Function to handle "View Details" button click
+        function viewDetails() {
+            // Implement your logic to view details here
+            alert('View Details button clicked!');
+        }
+    </script>
 
 
 
@@ -80,29 +80,20 @@
 
 
 <body class="align-items-center margin-auto">
-   
+
     @if (SignInManager.IsSignedIn(User))
     {
-         @if (User.IsInRole("Parent"))
-        {
-            <div class="container">
-                @RenderBody()
-            </div>
-            <script>
-                window.location.href = '@Url.Action("Index", "ParentUI")';
-            </script>
-        }
-        else 
-        { 
-            <div class="row">
-                <div class="sidebar open">
-                    <div class="row logo_details">
-                        <div class="logo_info">
-                            <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
-                            <div class="logo_name">PTAFCMS</div>
-                        </div>
-                        <i class="bx bx-menu" id="btn"></i>
+
+
+        <div class="row">
+            <div class="sidebar open">
+                <div class="row logo_details">
+                    <div class="logo_info">
+                        <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
+                        <div class="logo_name">PTAFCMS</div>
                     </div>
+                    <i class="bx bx-menu" id="btn"></i>
+                </div>
                 @if (User.IsInRole("Admin"))
                 {
                     <ul class="nav-list">
@@ -251,10 +242,22 @@
                             </a>
                             <span class="tooltip">Parent's Interface</span>
                         </li>
-                        
+
                     </ul>
-                 }
-                
+                }
+                else if (User.IsInRole("Parents"))
+                {
+                       <ul class="nav-list">
+                        <li>
+                            <a asp-area="" asp-controller="ParentUI" asp-action="RedirectToParentUI">
+                                <i class="bx bxs-dashboard"></i>
+                                <span class="link_name">Parents Interface</span>
+                            </a>
+                            <span class="tooltip">Parents Interface</span>
+                        </li>
+                        </ul>
+                }
+
                 <partial name="_LoginPartial" />
             </div>
             <section class="home-section">
@@ -265,8 +268,6 @@
                 </main>
             </section>
         </div>
-      }
-
     }
     else
     {
@@ -302,30 +303,30 @@
     </script>
 
 
-   
+
     <div class="container">
-    
+
         @RenderBody()
     </div>
-    
+
     @RenderSection("Scripts", required: false)
-  <div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="emergencyModalLabel">Emergency Alert</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="viewDetails()">View Details</button>
+    <div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emergencyModalLabel">Emergency Alert</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="viewDetails()">View Details</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
