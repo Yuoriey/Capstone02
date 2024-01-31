@@ -22,9 +22,9 @@ namespace Capstone02.Controllers
         // GET: PTAFees
         public async Task<IActionResult> Index()
         {
-              return _context.PTAFees != null ? 
-                          View(await _context.PTAFees.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.PTAFees'  is null.");
+            return _context.PTAFees != null ?
+                        View(await _context.PTAFees.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.PTAFees'  is null.");
         }
 
         // GET: PTAFees/Details/5
@@ -62,8 +62,29 @@ namespace Capstone02.Controllers
             //{
                 _context.Add(pTAFee);
                 await _context.SaveChangesAsync();
+
+                // Get the newly created fee amount
+                int newFeeAmount = pTAFee.Amount;
+
+                // Retrieve all parents
+                var parents = await _context.Parents.ToListAsync();
+
+                // Update the balance for each parent
+                foreach (var parent in parents)
+                {
+                    // Add the new fee amount to the existing balance of the parent
+                    parent.Balance += newFeeAmount;
+
+                    // Save changes to the parent entity
+                    _context.Update(parent);
+                }
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             //}
+
+            // ModelState is not valid, return to the view with validation errors
             //return View(pTAFee);
         }
 
@@ -150,14 +171,14 @@ namespace Capstone02.Controllers
             {
                 _context.PTAFees.Remove(pTAFee);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PTAFeeExists(int id)
         {
-          return (_context.PTAFees?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.PTAFees?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

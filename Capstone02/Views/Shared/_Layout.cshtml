@@ -28,12 +28,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css?v=@DateTime.UtcNow.Ticks.ToString()" />
     <link rel="stylesheet" href="~/css/home.css" />
-   
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
 
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
     <!------TABLE-------->
@@ -50,7 +50,7 @@
         $(document).ready(function () {
             $('#tbllist').DataTable({
                 dom: 'Bfrtip',
-                buttons:[
+                buttons: [
                     'print', 'pdf', 'excel'
                 ],
                 "pageLength": 5,
@@ -65,13 +65,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css">
     <!--EMERGENCY ALERT-->
-   <script>
-    // Function to handle "View Details" button click
-    function viewDetails() {
-        // Implement your logic to view details here
-        alert('View Details button clicked!');
-    }
-</script>
+    <script>
+        // Function to handle "View Details" button click
+        function viewDetails() {
+            // Implement your logic to view details here
+            alert('View Details button clicked!');
+        }
+    </script>
 
 
 
@@ -80,199 +80,194 @@
 
 
 <body class="align-items-center margin-auto">
-   
+
+
+
     @if (SignInManager.IsSignedIn(User))
     {
 
-        <div class="row">
-            <div class="sidebar open">
-                <div class="row logo_details">
-                    <div class="logo_info">
-                        <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
-                        <div class="logo_name">PTAFCMS</div>
+        @if (User.IsInRole("Parents") && !Context.Request.Path.StartsWithSegments("/ParentUI"))
+        {
+            // Redirect to Parents Interface
+            <script>window.location.href = '@Url.Action("Index", "ParentUI")';</script>
+        }
+
+        else
+        {
+            <div class="row">
+                <div class="sidebar open">
+                    <div class="row logo_details">
+                        <div class="logo_info">
+                            <img src="/images/ICENHSLogo.png" alt="ICENHS Logo" class="img-fluid logo_image">
+                            <div class="logo_name">PTAFCMS</div>
+                        </div>
+                        <i class="bx bx-menu" id="btn"></i>
                     </div>
-                    <i class="bx bx-menu mr-3" id="btn"></i>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <ul class="nav-list">
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="bx bxs-dashboard"></i>
+                                    <span class="link_name">Dashboard</span>
+                                </a>
+                                <span class="tooltip">Dashboard</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Employees" asp-action="Index">
+                                    <i class="bx bx-walk"></i>
+                                    <span class="link_name">Employees</span>
+                                </a>
+                                <span class="tooltip">Employees</span>
+                            </li>
+                            <li>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-bus-school"></i>
+                                        <span class="link_name">PTAFees</span>
+                                    </a>
+                                    <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="LearnersAreas" asp-action="Index">Learners Areas/Org</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Publications" asp-action="Index">Publication</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="BoyGirlsScouts" asp-action="Index">Boy/Girls Scout</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Anti_TBFundDrive" asp-action="Index">Anti-TB Fund Drive</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="RFIDs" asp-action="Index">RF I.D.</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="SSGs" asp-action="Index">SSG</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
+                                    </div>
+                                </div>
+                                <span class="tooltip">PTAFees</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Students" asp-action="Index">
+                                    <i class="bx bx-history"></i>
+                                    <span class="link_name">Students</span>
+                                </a>
+                                <span class="tooltip">Students</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Parents" asp-action="Index">
+                                    <i class="bx bx-history"></i>
+                                    <span class="link_name">Parents</span>
+                                </a>
+                                <span class="tooltip">Parents</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Transactions" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Transactions</span>
+                                </a>
+                                <span class="tooltip">Transactions</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Roles" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Roles</span>
+                                </a>
+                                <span class="tooltip">Roles</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="ParentUI" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Parent's Interface</span>
+                                </a>
+                                <span class="tooltip">Parent's Interface</span>
+                            </li>
+                        </ul>
+                    }
+                    else if (User.IsInRole("Employee"))
+                    {
+                        <ul class="nav-list">
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="bx bxs-dashboard"></i>
+                                    <span class="link_name">Dashboard</span>
+                                </a>
+                                <span class="tooltip">Dashboard</span>
+                            </li>
+                            <li>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-bus-school"></i>
+                                        <span class="link_name">PTAFees</span>
+                                    </a>
+                                    <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="LearnersAreas" asp-action="Index">Learners Areas/Org</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Publications" asp-action="Index">Publication</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="BoyGirlsScouts" asp-action="Index">Boy/Girls Scout</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="Anti_TBFundDrive" asp-action="Index">Anti-TB Fund Drive</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="RFIDs" asp-action="Index">RF I.D.</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="SSGs" asp-action="Index">SSG</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
+                                        <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
+                                    </div>
+                                </div>
+                                <span class="tooltip">PTAFees</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Students" asp-action="Index">
+                                    <i class="bx bx-history"></i>
+                                    <span class="link_name">Students</span>
+                                </a>
+                                <span class="tooltip">Students</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Parents" asp-action="Index">
+                                    <i class="bx bx-history"></i>
+                                    <span class="link_name">Parents</span>
+                                </a>
+                                <span class="tooltip">Parents</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Transactions" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Transactions</span>
+                                </a>
+                                <span class="tooltip">Transactions</span>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Roles" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Roles</span>
+                                </a>
+                                <span class="tooltip">Roles</span>
+                            </li>
+
+                            <li>
+                                <a asp-area="" asp-controller="ParentUI" asp-action="Index">
+                                    <i class="bx bxs-inbox"></i>
+                                    <span class="link_name">Parent's Interface</span>
+                                </a>
+                                <span class="tooltip">Parent's Interface</span>
+                            </li>
+
+                        </ul>
+                    }
+                  
+
+                    <partial name="_LoginPartial" />
                 </div>
-                @if (User.IsInRole("Admin"))
-                {
-                    <ul class="nav-list">
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="bx bxs-dashboard"></i>
-                                <span class="link_name">Dashboard</span>
-                            </a>
-                            <span class="tooltip">Dashboard</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Employees" asp-action="Index">
-                                <i class="bx bx-group"></i>
-                                <span class="link_name">Employees</span>
-                            </a>
-                            <span class="tooltip">Employees</span>
-                        </li>
-                        <li>
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="bx bx-spreadsheet"></i>
-                                    <span class="link_name">PTAFees</span>
-                                </a>
-                                <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="LearnersAreas" asp-action="Index">Learners Areas/Org</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Publications" asp-action="Index">Publication</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="BoyGirlsScouts" asp-action="Index">Boy/Girls Scout</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Anti_TBFundDrive" asp-action="Index">Anti-TB Fund Drive</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="RFIDs" asp-action="Index">RF I.D.</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="SSGs" asp-action="Index">SSG</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
-                                </div>
-                            </div>
-                            <span class="tooltip">PTAFees</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Students" asp-action="Index">
-                                <i class="bx bx-face"></i>
-                                <span class="link_name">Students</span>
-                            </a>
-                            <span class="tooltip">Students</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Parents" asp-action="Index">
-                                <i class="bx bx-user"></i>
-                                <span class="link_name">Parents</span>
-                            </a>
-                            <span class="tooltip">Parents</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Transactions" asp-action="Index">
-                                <i class="bx bxs-inbox"></i>
-                                <span class="link_name">Transactions</span>
-                            </a>
-                            <span class="tooltip">Transactions</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Roles" asp-action="Index">
-                                <i class="bx bxs-user-plus"></i>
-                                <span class="link_name">Roles</span>
-                            </a>
-                            <span class="tooltip">Roles</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="ParentUI" asp-action="Index">
-                                <i class="bx bxs-user-detail"></i>
-                                <span class="link_name">Parent's Interface</span>
-                            </a>
-                            <span class="tooltip">Parent's Interface</span>
-                        </li>
-                    </ul>
-                }
-                else
-                {
-                    <ul class="nav-list">
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="bx bxs-dashboard"></i>
-                                <span class="link_name">Dashboard</span>
-                            </a>
-                            <span class="tooltip">Dashboard</span>
-                        </li>
-                        <li>
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="ptafeesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="bx bx-spreadsheet"></i>
-                                    <span class="link_name">PTAFees</span>
-                                </a>
-                                <div class="dropdown-menu ml-5" aria-labelledby="ptafeesDropdown">
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAFees" asp-action="Index">All PTAFees</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="RedCrosses" asp-action="Index">Red Cross</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="PTAMemberships" asp-action="Index">PTA Memberships</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="LearnersAreas" asp-action="Index">Learners Areas/Org</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Insurances" asp-action="Index">Insurance</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Publications" asp-action="Index">Publication</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="BoyGirlsScouts" asp-action="Index">Boy/Girls Scout</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="Anti_TBFundDrive" asp-action="Index">Anti-TB Fund Drive</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="RFIDs" asp-action="Index">RF I.D.</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="SSGs" asp-action="Index">SSG</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="GPTAElectricities" asp-action="Index">GPTA Electricity</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="AthleticsSportsFunds" asp-action="Index">Athletics/Sports Fund</a>
-                                    <a class="dropdown-item text-white-50" asp-area="" asp-controller="ResearchFunds" asp-action="Index">Research Fund</a>
-                                </div>
-                            </div>
-                            <span class="tooltip">PTAFees</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Students" asp-action="Index">
-                                <i class="bx bx-face"></i>
-                                <span class="link_name">Students</span>
-                            </a>
-                            <span class="tooltip">Students</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Parents" asp-action="Index">
-                                <i class="bx bx-user"></i>
-                                <span class="link_name">Parents</span>
-                            </a>
-                            <span class="tooltip">Parents</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Transactions" asp-action="Index">
-                                <i class="bx bxs-inbox"></i>
-                                <span class="link_name">Transactions</span>
-                            </a>
-                            <span class="tooltip">Transactions</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Roles" asp-action="Index">
-                                <i class="bx bxs-user-plus"></i>
-                                <span class="link_name">Roles</span>
-                            </a>
-                            <span class="tooltip">Roles</span>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="ParentUI" asp-action="Index">
-                                <i class="bx bxs-user-detail"></i>
-                                <span class="link_name">Parent's Interface</span>
-                            </a>
-                            <span class="tooltip">Parent's Interface</span>
-                        </li>
-                    </ul>
-                }
-                <partial name="_LoginPartial" />
+                <section class="home-section">
+                    <main class="main">
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+                    </main>
+                </section>
             </div>
-            <section class="home-section">
-              
-                <main class="main">
-             
-                    <div class="container">
-                        @RenderBody()
-                    </div>
-                </main>
-            </section>
-            @*<div class="user-greeting ml-3">
-                <h2 class="text-white">Good Day!</h2>
-            </div>*@
-            <div class="user-profile">
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <div class="nav-item">
-                        <a id="manage" class="nav-link text-white">
-                            <i class="bx bxs-user-circle mt-2"></i>
-                            <span class="link_name">@UserManager.GetUserName(User)</span>
-                        </a>
-                        <span class="tooltip">User</span>
-                    </div>
-                }
-            </div>
-        </div>
-
-
-
-
+        }
+      
     }
     else
     {
@@ -308,30 +303,31 @@
     </script>
 
 
-   
+
     <div class="container">
-    
+
         @RenderBody()
     </div>
-    
+
     @RenderSection("Scripts", required: false)
-  <div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="emergencyModalLabel">Emergency Alert</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="viewDetails()">View Details</button>
+    <div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emergencyModalLabel">Emergency Alert</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="viewDetails()">View Details</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
+}

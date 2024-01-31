@@ -9,20 +9,18 @@ namespace Capstone02.Models
 
 
 		public int? EmployeeId { get; set; }
-		public virtual Employee Employee { get; set; }
-
-		//[NotMapped]
-		//public string EmployeeFullName
-		//{
-		//	get { return Employee?.FullName; }
-		//}
+		public virtual Employee? Employee { get; set; }
 
 		public int? ParentId { get; set; }
-		public virtual Parent Parent { get; set; }
+		public virtual Parent? Parent { get; set; }
 
 		public int? PTAFeeId { get; set; }
-		public virtual PTAFee PTAFee { get; set; }
+		public virtual PTAFee? PTAFee { get; set; }
 
+		[NotMapped]
+        public List<PTAFee>? PTAFeesList { get; set; }
+        [NotMapped]
+        public decimal TotalAmount { get; set; }
 
-	}
+    }
 }
