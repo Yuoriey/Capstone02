@@ -73,13 +73,13 @@
         width: 200px;
     }
 
-    .display-box p1 {
-        font-size: 1em;
-    }
+        .display-box p1 {
+            font-size: 1em;
+        }
 
-    .display-box p {
-        font-size: 2em;
-    }
+        .display-box p {
+            font-size: 2em;
+        }
 
     .grand-total {
         position: absolute;
@@ -192,111 +192,37 @@
         <p1>Grand Total:</p1>
         <p>₱ 0.00</p>
     </div>
-	<div class="display-box">
-		<p1>Balance:</p1>
-		<p>₱ 725.00</p>
-	</div>
-	<p2 id="selected-child"></p2>
+    <div class="display-box">
+        <p1>Balance:</p1>
+        <p>₱ @ViewBag.TotalAmount</p>
+    </div>
+    <p2 id="selected-child"></p2>
 </header>
 
 <div class="card-container">
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Red Cross">
-        <p class="fee-details">
-            <span class="fee-name">Red Cross</span>
-            <span class="fee-amount">₱ 60.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="PTA Membership">
-        <p class="fee-details">
-            <span class="fee-name">PTA Membership</span>
-            <span class="fee-amount">₱ 100.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Learner Areas / ORG">
-        <p class="fee-details">
-            <span class="fee-name">Learner Areas / ORG</span>
-            <span class="fee-amount">₱ 80.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Insurance">
-        <p class="fee-details">
-            <span class="fee-name">Insurance</span>
-            <span class="fee-amount">₱ 50.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Publication">
-        <p class="fee-details">
-            <span class="fee-name">Publication</span>
-            <span class="fee-amount">₱ 90.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Boy / Girls Scout">
-        <p class="fee-details">
-            <span class="fee-name">Boy / Girls Scout</span>
-            <span class="fee-amount">₱ 60.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-	</div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Anti-TB Fund Drive">
-        <p class="fee-details">
-            <span class="fee-name">Anti-TB Fund Drive</span>
-            <span class="fee-amount">₱ 5.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="RF I.D.">
-        <p class="fee-details">
-            <span class="fee-name">RF I.D.</span>
-            <span class="fee-amount">₱ 100.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="SSG">
-        <p class="fee-details">
-            <span class="fee-name">SSG</span>
-            <span class="fee-amount">₱ 50.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="GPTA Electricity">
-        <p class="fee-details">
-            <span class="fee-name">GPTA Electricity</span>
-            <span class="fee-amount">₱ 10.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Athletics / Sports Fund">
-        <p class="fee-details">
-            <span class="fee-name">Athletics / Sports Fund</span>
-            <span class="fee-amount">₱ 20.00</span>
-        </p>
-        <p class="highlight-paid">Paid</p>
-    </div>
-    <div class="card">
-        <input type="checkbox" name="fee[]" value="Research Fund (STE Only)">
-        <p class="fee-details">
-            <span class="fee-name">Research Fund (STE Only)</span>
-            <span class="fee-amount">₱ 100.00</span>
-        </p>
-        <p class="highlight-not-paid">Not Paid</p>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="border-right">List of Fees</th>
+                <th>Amount</th>
+                <th>Pay</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fee in ViewBag.PTAFeesList)
+            {
+                <tr>
+                    <td>@fee.Type</td>
+                    <td>₱@fee.Amount</td>
+                    <td>
+                        <input type="checkbox" name="payFee" value="@fee.Type">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
 
 <div class="button-container">
     <a class="btn btn-secondary text-white">Cancel</a>

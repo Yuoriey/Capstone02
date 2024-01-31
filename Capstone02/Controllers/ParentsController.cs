@@ -37,8 +37,8 @@ namespace Capstone02.Controllers
 
 
 
-    // GET: Parents
-    public async Task<IActionResult> Index()
+        // GET: Parents
+        public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Parents.Include(p => p.Student);
             return View(await applicationDbContext.ToListAsync());
@@ -79,9 +79,9 @@ namespace Capstone02.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                _context.Add(parent);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+            _context.Add(parent);
+            await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
             //}
 
             var user = new IdentityUser { UserName = parent.EmailAddress, Email = parent.EmailAddress };
@@ -186,14 +186,14 @@ namespace Capstone02.Controllers
             {
                 _context.Parents.Remove(parent);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ParentExists(int id)
         {
-          return (_context.Parents?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Parents?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
