@@ -8,42 +8,43 @@
 
 <style>
     body {
-        background-image: url("~/CoreUI/img/ICENHSLogin1.JP");
+        background-image: url("~/CoreUI/image/ICENHSLogo.png");
         background-size: cover;
-        height: 100vh;
+        height: 100%;
         margin: 0px;
         width: 100%;
-        background-color: green;
     }
 
     .card {
         border-radius: 15px;
-        border-color: red;
-        border-width: 4px;
+        border-color: blue;
+        border-width: .5px;
     }
 
     .slanted-background {
-        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(navy 100%, transparent 50%);
+        /* background: linear-gradient(navy 100%, transparent 50%); */
         z-index: -1;
-        border-color:transparent;
+        border: none;
     }
 
 </style>
 
-<img class="slanted-background"/>
+@* <img class="slanted-background"/> *@
 
-<div class="slanted-background-alt"></div>
+@* <div class="slanted-background-alt"> </div> *@
 
-<div class="container-fluid mt-auto">
+<div class="mx-auto ">
+    <img class="slanted-background" src="~/CoreUI/img/ICENHSLogin1.JPG" />
     <div class="row justify-content-center">
+        
         <div class="col-4 mx-auto">
+            
             <div class="card">
-                <section class="card-body">
+                <section class=" card-body">
                     <form id="account" method="post">
                         <h2 class="text-center">Login your account</h2>
                         <hr />
